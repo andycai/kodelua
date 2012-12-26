@@ -5,12 +5,41 @@
 		package.path = string.format("%s;%s?.lua;%s?/init.lua",  
 			pkgPath, args[i], args[i]) 
 	end
-end)("./thirdparty/")
+end)("./3rdparty/")
 
-csv = require "cola.csv"
-util = require "cola.util"
+-- require "register"
+local csv = require "kodelua.csv"
+local util = require "kodelua.util"
+-- local Context = require "kodelua.mvcs.context"
 
-nums, data, labels = csv.LoadAndSave("./thirdparty/cola/tests/player.csv")
+local bagService = require "service.bagservice"
+local bagCtrl = require "controller.bagcontroller"
+local bagPane = require "view.bag.bagpane"
+local appFacade = require "appfacade"
 
-util.Dump(data)
-print(nums)
+local function main()
+	nums, data, labels = csv.LoadAndSave("./3rdparty/kodelua/tests/player.csv")
+	-- print("Player data rows: ", nums)
+	-- util.Dump(labels, "Label")
+	-- util.Dump(data, "Player Data")
+
+	-- Context:Initialize()
+	appFacade:Register(bagCtrl, bagPane)
+
+	bagService:reqBagGet()
+	bagService:onBagGet({})
+
+	appFacade:RemoveController(bagCtrl.name)
+
+end
+
+-- response string
+function Route(response)
+	-- body
+end
+
+function errHandler()
+	debug.traceback()
+end
+
+xpcall(main, errHandler)

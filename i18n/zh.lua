@@ -1,4 +1,4 @@
-local s = require('say')
+local s = require('kodelua.i18n')
 
 s:set_namespace("zh")
 

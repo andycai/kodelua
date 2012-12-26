@@ -5,10 +5,10 @@
 		package.path = string.format("%s;%s?.lua;%s?/init.lua",  
 			pkgPath, args[i], args[i]) 
 	end
-end)("./thirdparty/")
+end)("./3rdparty/")
 
 -- test stringutil
-local stringutil = require "cola.strings"
+local stringutil = require "kodelua.strings"
 
 tmp = stringutil.Split("go,c,c++, lua", ",")
 for k, v in ipairs(tmp) do
@@ -22,12 +22,12 @@ stringutil.PushBuffer(strT, "world!")
 print(stringutil.PullBuffer(strT))
 
 -- test mvcs
-local Context = require "cola.mvc.context".Class
+local Context = require "kodelua.mvc.context"
 local context = Context:New()
-print(context:ToString())
+print(context.controllers)
 
 -- oop
-local Object = require "cola.object".Class
+local Object = require "kodelua.object"
 local Person = Object:Extend{
 	name = "Andy";
 	go = function() print(self.name .. "__gpgpgp") end
@@ -64,11 +64,11 @@ print(package.path)
 print(package.cpath)
 
 -- init.lua
-require "cola"
+require "kodelua"
 
 
 -- fmt package
-local fmt = require "cola.fmt"
+local fmt = require "kodelua.fmt"
 fmt.Print("hello, fmt.Print\n")
 fmt.Println("hello, fmt.Println")
 fmt.Printf("hello, %s", "fmt.Printf")
@@ -76,8 +76,8 @@ fmt.Println(fmt.Sprintf("hello, %s", "fmt.Sprintf"))
 
 
 -- json test
-libJson = require "cola.encoding.json"
-utils = require "cola.util"
+libJson = require "kodelua.encoding.json"
+utils = require "kodelua.util"
  local t = {
     ["name1"] = "value1",
     ["name2"] = {1, false, true, 23.54, "a \021 string"},
@@ -110,7 +110,7 @@ print(t.name2[4])
 
 
 --- i18n 
-s = require "cola.i18n".Class
+s = require "kodelua.i18n"
 
 s:SetNamespace("en")
 
