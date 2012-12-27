@@ -1,5 +1,5 @@
 --[==[
-s = require "cola.i18n"
+s = require "kodelua.i18n"
 
 s:SetNamespace("en")
 
@@ -64,7 +64,7 @@ local __meta = {
 	end
 }
 
-s:SetFallback('en')
-s:SetNamespace('en')
+s:SetFallback('zh')
+s:SetNamespace('zh')
 
 return setmetatable(s, __meta)

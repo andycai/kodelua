@@ -1,14 +1,3 @@
-(function(...)
-	args = {...}
-	for i=1, #args do
-		local pkgPath = package.path  
-		package.path = string.format("%s;%s?.lua;%s?/init.lua",  
-			pkgPath, args[i], args[i]) 
-	end
-end)("./protected/")
-
-local log4j = require "kodelua.log4j"
-
 -- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)
     print("----------------------------------------")
@@ -21,14 +10,16 @@ end
 -- response: may be a json string or other you want
 -- parse reponse and dispatch to real module
 function Route(response)
-	log4j.Debug(response)
+	xpcall(function()
+		if response then
+			log4j.Debug(response)
+		end
+	end, __G__TRACKBACK__)
 end
 
 local function main()
-	-- avoid memory leak
-    collectgarbage("setpause", 100)
-    collectgarbage("setstepmul", 5000)
-
+	require "kodelua.init"
+	require "init"
 	-- register controllers
 	require "register"
 

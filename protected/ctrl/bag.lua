@@ -1,8 +1,6 @@
-local Controller = require "kodelua.mvc.controller"
-local log4j = require "kodelua.log4j"
 local bagModel = require "model.bag"
 
-local bagCtrl = Controller:Extend{
+local bagCtrl = KController:Extend{
 	name = "bagCtrl";
 
 	onRegister = function(self)
@@ -28,7 +26,7 @@ local bagCtrl = Controller:Extend{
 		-- test for reading csv data
 	    local util = require "kodelua.util"
 		local csv = require "kodelua.csv"
-		nums, data, labels = csv.LoadAndSave("./kodelua/tests/player.csv")
+		nums, data, labels = csv.Load("./kodelua/tests/player.csv")
 		print("Player data rows: ", nums)
 		util.Dump(labels, "Label")
 		util.Dump(data, "Player Data")

@@ -1,5 +1,4 @@
-local Notifier = require "kodelua.mvc.notifier"
-local baseService = Notifier:Extend{
+local baseService = KActor:Extend{
 	Name = "BaseService"
 }
 

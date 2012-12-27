@@ -31,7 +31,7 @@ local function makeLine(line_text)
 	return nums, values
 end
 
-function csv.LoadAndSave(path)
+function csv.Load(path)
 	if path == nil then return nil, nil, nil end
 
 	local data = {}

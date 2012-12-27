@@ -1,4 +1,3 @@
-local Notifier = require "kodelua.mvc.notifier"
-local baseModel = Notifier:Extend()
+local baseModel = KActor:Extend()
 
 return baseModel

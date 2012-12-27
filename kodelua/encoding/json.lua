@@ -1,7 +1,7 @@
 local encode, decode
 local ok
 
-if __FRAMEWORK_ENVIRONMENT__ == "client" then
+if __FRAMEWORK_ENVIRONMENT__ == "product" then
 	ok = pcall(function()
 		local cjson = require "cjson"
 		encode = cjson.encode
@@ -10,7 +10,6 @@ if __FRAMEWORK_ENVIRONMENT__ == "client" then
 end
 
 if not ok then
-	print("using simplejson")
 	local simplejson = require "kodelua.encoding.simplejson"
 	encode = simplejson.encode
 	decode = simplejson.decode

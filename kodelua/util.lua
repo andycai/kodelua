@@ -1,8 +1,9 @@
-local map = require "kodelua.map"
-local fmt = require "kodelua.fmt"
-
 local util
 util = {
+	Round = function(num)
+		return math.floor(num + 0.5)
+	end;
+
 	Tostring = function(data)
 		if "nil" == type(data) then
 			return tostring(nil)

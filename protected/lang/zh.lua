@@ -1,24 +1,24 @@
-local s = require('kodelua.i18n')
+-- say = require "kodelua.i18n"
 
-s:set_namespace("zh")
+say:SetNamespace("zh")
 
-s:set("output.pending", "开发中")
-s:set("output.failure", "失败")
-s:set("output.success", "成功")
+say:Set("output.pending", "开发中")
+say:Set("output.failure", "失败")
+say:Set("output.success", "成功")
 
-s:set("output.pending_plural", "开发中")
-s:set("output.failure_plural", "失败")
-s:set("output.success_plural", "成功")
+say:Set("output.pending_plural", "开发中")
+say:Set("output.failure_plural", "失败")
+say:Set("output.success_plural", "成功")
 
-s:set("output.pending_zero", "开发中")
-s:set("output.failure_zero", "失败")
-s:set("output.success_zero", "成功")
+say:Set("output.pending_zero", "开发中")
+say:Set("output.failure_zero", "失败")
+say:Set("output.success_zero", "成功")
 
-s:set("output.pending_single", "开发中")
-s:set("output.failure_single", "失败")
-s:set("output.success_single", "成功")
+say:Set("output.pending_single", "开发中")
+say:Set("output.failure_single", "失败")
+say:Set("output.success_single", "成功")
 
-s:set("output.seconds", "秒")
+say:Set("output.seconds", "秒")
 
 failure_messages = {
   "你一共提交了[%d]个测试用例",

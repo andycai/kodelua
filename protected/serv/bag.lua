@@ -1,8 +1,6 @@
-local BaseSerivce = require "serv.base"
 local bagModel = require "model.bag"
-local log4j = require "kodelua.log4j"
 
-local bagService = BaseSerivce:Extend()
+local bagService = KService:Extend()
 
 function bagService:reqBagGet()
 	log4j.Debug("Request getting bag infomation")

@@ -22,7 +22,7 @@ stringutil.PushBuffer(strT, "world!")
 print(stringutil.PullBuffer(strT))
 
 -- test mvcs
-local Context = require "kodelua.mvc.context"
+local Context = require "kodelua.mvcs.context"
 local context = Context:New()
 print(context.controllers)
 
@@ -64,8 +64,7 @@ print(package.path)
 print(package.cpath)
 
 -- init.lua
-require "kodelua"
-
+-- require "kodelua"
 
 -- fmt package
 local fmt = require "kodelua.fmt"
