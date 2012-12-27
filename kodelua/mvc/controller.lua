@@ -1,6 +1,4 @@
-local Notifier = require "kodelua.mvc.notifier"
-
-local Controller = Notifier:Extend{
+local Controller = KNotifier:Extend{
 	controllerName = "BaseController";
 	viewComponent = {}
 }

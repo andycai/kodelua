@@ -1,5 +1,3 @@
-local Object = require "kodelua.object"
-
 local Observer = Object:Extend{
 	notify = "";
 	context = {}

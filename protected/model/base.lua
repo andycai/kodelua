@@ -1,3 +1,3 @@
-local baseModel = KActor:Extend()
+local baseModel = KNotifier:Extend()
 
 return baseModel

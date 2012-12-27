@@ -1,8 +1,3 @@
-local Object = require "kodelua.object"
-local Notification = require "kodelua.mvc.notification"
-local Observer = require "kodelua.mvc.observer"
-local log4j = require "kodelua.log4j"
-
 local Facade = Object:Extend{
 	observerMap = {};
 	controllerMap = {}
@@ -50,7 +45,7 @@ end
 
 function Facade:SendNotification(name, body, kind)
 	log4j.Info("SendNotification: name=%s, kind=%s", name, kind)
-	self:notifyObservers(Notification:Extend{name=name, body=body, kind=kind})
+	self:notifyObservers(KNotification:Extend{name=name, body=body, kind=kind})
 end
 
 function Facade:RegisterController(controller)
@@ -61,7 +56,7 @@ function Facade:RegisterController(controller)
 
 	local observer
 	if #interests > 0 then
-		observer = Observer:Extend{
+		observer = KObserver:Extend{
 			notify = "HandleNotification",
 			context = controller
 		}

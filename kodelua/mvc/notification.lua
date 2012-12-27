@@ -1,5 +1,3 @@
-local Object = require "kodelua.object"
-
 local Notification = Object:Extend{
 	name = "";
 	body = {};

@@ -1,4 +1,4 @@
-local baseService = KActor:Extend{
+local baseService = KNotifier:Extend{
 	Name = "BaseService"
 }
 
