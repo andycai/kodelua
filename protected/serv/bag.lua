@@ -1,5 +1,5 @@
-local BaseSerivce = require "service.baseservice"
-local bagModel = require "model.bagmodel"
+local BaseSerivce = require "serv.base"
+local bagModel = require "model.bag"
 local log4j = require "kodelua.log4j"
 
 local bagService = BaseSerivce:Extend()

@@ -5,7 +5,7 @@
 		package.path = string.format("%s;%s?.lua;%s?/init.lua",  
 			pkgPath, args[i], args[i]) 
 	end
-end)("./3rdparty/")
+end)("./protected/")
 
 local log4j = require "kodelua.log4j"
 
@@ -17,22 +17,22 @@ local function main()
     -- test for reading csv data
     local util = require "kodelua.util"
 	local csv = require "kodelua.csv"
-	nums, data, labels = csv.LoadAndSave("./3rdparty/kodelua/tests/player.csv")
+	nums, data, labels = csv.LoadAndSave("./kodelua/tests/player.csv")
 	print("Player data rows: ", nums)
 	util.Dump(labels, "Label")
 	util.Dump(data, "Player Data")
 
 	-- register controller
-	-- require "register"
-	local appFacade = require "appfacade"
-	local bagCtrl = require "controller.bagcontroller"
-	local bagPane = require "view.bag.bagpane"
-	appFacade:Register(bagCtrl, bagPane)
+	require "register"
+	-- local bagCtrl = require "ctrl.bag"
+	-- local bagPane = require "view.bag.bagpane"
+	-- appFacade:Register(bagCtrl, bagPane)
 
-	local bagService = require "service.bagservice"
+	local appFacade = require "appfacade"
+	local bagService = require "serv.bag"
 	bagService:reqBagGet()
 	bagService:onBagGet({})
-	appFacade:RemoveController(bagCtrl.name)
+	-- appFacade:RemoveController(bagCtrl.name)
 end
 
 function __G__TRACKBACK__(msg)

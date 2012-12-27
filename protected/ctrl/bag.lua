@@ -1,6 +1,6 @@
 local Controller = require "kodelua.mvc.controller"
-local bagModel = require "model.bagmodel"
 local log4j = require "kodelua.log4j"
+local bagModel = require "model.bag"
 
 local bagCtrl = Controller:Extend{
 	name = "bagCtrl"
