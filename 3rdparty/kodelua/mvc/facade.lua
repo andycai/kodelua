@@ -8,6 +8,10 @@ local Facade = Object:Extend{
 	controllerMap = {}
 }
 
+function Facade:New()
+	log4j.Error("Singleton cannot be instantiated.")
+end
+
 function Facade:registerObserver(notificationName, observer)
 	if self.observerMap[notificationName] == nil then
 		self.observerMap[notificationName] = {observer}

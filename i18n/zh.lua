@@ -2,7 +2,6 @@ local s = require('kodelua.i18n')
 
 s:set_namespace("zh")
 
--- "Pending: test.lua @ 12 \n description
 s:set("output.pending", "开发中")
 s:set("output.failure", "失败")
 s:set("output.success", "成功")
@@ -21,7 +20,6 @@ s:set("output.success_single", "成功")
 
 s:set("output.seconds", "秒")
 
--- definitions following are not used within the 'say' namespace but are defined as globals
 failure_messages = {
   "你一共提交了[%d]个测试用例",
   "又出错了！",

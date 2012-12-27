@@ -8,7 +8,7 @@ function baseService:Request(action, param)
 		act = action;
 		param = param
 	}
-	-- request to network
+	-- request to network with c++ interface
 end
 
 -- function baseService:Notify(name, data)

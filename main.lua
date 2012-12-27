@@ -7,39 +7,46 @@
 	end
 end)("./3rdparty/")
 
--- require "register"
-local csv = require "kodelua.csv"
-local util = require "kodelua.util"
--- local Context = require "kodelua.mvcs.context"
-
-local bagService = require "service.bagservice"
-local bagCtrl = require "controller.bagcontroller"
-local bagPane = require "view.bag.bagpane"
-local appFacade = require "appfacade"
+local log4j = require "kodelua.log4j"
 
 local function main()
-	nums, data, labels = csv.LoadAndSave("./3rdparty/kodelua/tests/player.csv")
-	-- print("Player data rows: ", nums)
-	-- util.Dump(labels, "Label")
-	-- util.Dump(data, "Player Data")
+	-- avoid memory leak
+    collectgarbage("setpause", 100)
+    collectgarbage("setstepmul", 5000)
 
-	-- Context:Initialize()
+    -- test for reading csv data
+    local util = require "kodelua.util"
+	local csv = require "kodelua.csv"
+	nums, data, labels = csv.LoadAndSave("./3rdparty/kodelua/tests/player.csv")
+	print("Player data rows: ", nums)
+	util.Dump(labels, "Label")
+	util.Dump(data, "Player Data")
+
+	-- register controller
+	-- require "register"
+	local appFacade = require "appfacade"
+	local bagCtrl = require "controller.bagcontroller"
+	local bagPane = require "view.bag.bagpane"
 	appFacade:Register(bagCtrl, bagPane)
 
+	local bagService = require "service.bagservice"
 	bagService:reqBagGet()
 	bagService:onBagGet({})
-
 	appFacade:RemoveController(bagCtrl.name)
-
 end
 
--- response string
+function __G__TRACKBACK__(msg)
+    print("----------------------------------------")
+    print("LUA ERROR: " .. tostring(msg) .. "\n")
+    print(debug.traceback())
+    print("----------------------------------------")
+end
+
+-- public interface for C++
+-- response: may be a json string or other you want
+-- parse reponse and dispatch to real module
 function Route(response)
-	-- body
+	log4j.Debug(response)
 end
 
-function errHandler()
-	debug.traceback()
-end
-
-xpcall(main, errHandler)
+xpcall(main, __G__TRACKBACK__)
