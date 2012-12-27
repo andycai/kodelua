@@ -7,3 +7,4 @@ local appFacade = require "appfacade"
 local bagCtrl = require "ctrl.bag"
 local bagPane = require "view.bag.bagpane"
 appFacade:Register(bagCtrl, bagPane)
+-- appFacade:RemoveController(bagCtrl.name)

@@ -1,4 +1,4 @@
-kodelua
+A Lua MVC Framework Kodelua
 ========
 
-coding lua
+Kodelua is lightweight mvc framwork of lua for mobile game.

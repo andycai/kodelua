@@ -9,32 +9,7 @@ end)("./protected/")
 
 local log4j = require "kodelua.log4j"
 
-local function main()
-	-- avoid memory leak
-    collectgarbage("setpause", 100)
-    collectgarbage("setstepmul", 5000)
-
-    -- test for reading csv data
-    local util = require "kodelua.util"
-	local csv = require "kodelua.csv"
-	nums, data, labels = csv.LoadAndSave("./kodelua/tests/player.csv")
-	print("Player data rows: ", nums)
-	util.Dump(labels, "Label")
-	util.Dump(data, "Player Data")
-
-	-- register controller
-	require "register"
-	-- local bagCtrl = require "ctrl.bag"
-	-- local bagPane = require "view.bag.bagpane"
-	-- appFacade:Register(bagCtrl, bagPane)
-
-	local appFacade = require "appfacade"
-	local bagService = require "serv.bag"
-	bagService:reqBagGet()
-	bagService:onBagGet({})
-	-- appFacade:RemoveController(bagCtrl.name)
-end
-
+-- for CCLuaEngine traceback
 function __G__TRACKBACK__(msg)
     print("----------------------------------------")
     print("LUA ERROR: " .. tostring(msg) .. "\n")
@@ -47,6 +22,19 @@ end
 -- parse reponse and dispatch to real module
 function Route(response)
 	log4j.Debug(response)
+end
+
+local function main()
+	-- avoid memory leak
+    collectgarbage("setpause", 100)
+    collectgarbage("setstepmul", 5000)
+
+	-- register controllers
+	require "register"
+
+	local bagService = require "serv.bag"
+	bagService:reqBagGet()
+	bagService:onBagGet({})
 end
 
 xpcall(main, __G__TRACKBACK__)
