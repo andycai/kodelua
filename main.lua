@@ -12,7 +12,15 @@ end
 function Route(response)
 	xpcall(function()
 		if response then
-			log4j.Debug(response)
+			local resp = json.Decode(response)
+			local act = strings.Explode(resp.act, ".")
+			local service = Getglobal(act[1].."Service")
+			local action = act[2]
+			if service ~= nil then
+				service[action](service, resp.param)
+			else
+				log4j.Debug("Wrong aciton: %s", response)
+			end
 		end
 	end, __G__TRACKBACK__)
 end
@@ -23,9 +31,8 @@ local function main()
 	-- register controllers
 	require "register"
 
-	local bagService = require "serv.bag"
-	bagService:reqBagGet()
-	bagService:onBagGet({})
+	-- login
+	roleService:reqOnline()
 end
 
 xpcall(main, __G__TRACKBACK__)

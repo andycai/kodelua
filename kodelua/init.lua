@@ -8,6 +8,26 @@ function AppendPkgPath(...)
 end
 AppendPkgPath("./protected/")
 
+function Getglobal(f)
+    local v = _G      -- start with the table of globals
+    for w in string.gfind(f, "[%w_]+") do
+       v = v[w]
+    end
+    return v
+end
+
+function Setglobal(f, v)
+    local t = _G         -- start with the table of globals
+    for w, d in string.gfind(f, "([%w_]+)(.?)") do
+       if d == "." then  -- not last field?
+           t[w] = t[w] or {}    -- create table if absent
+           t = t[w]          -- get the table
+       else                 -- last field
+           t[w] = v          -- do the assignment
+       end
+    end
+end
+
 __FRAMEWORK_ENVIRONMENT__ = "unknown"
 
 Object = require "kodelua.object"
@@ -24,6 +44,7 @@ fmt = require "kodelua.fmt"
 say = require "kodelua.i18n"
 log4j = require "kodelua.log4j"
 csv = require "kodelua.csv"
+json = require "kodelua.encoding.json"
 
 -- avoid memory leak
 collectgarbage("setpause", 100)

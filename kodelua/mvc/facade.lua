@@ -49,9 +49,13 @@ function Facade:SendNotification(name, body, kind)
 end
 
 function Facade:RegisterController(controller)
-	if self.controllerMap[controller.name] ~= nil then return end
+	if controller.Name == nil then 
+		error("controller need a Name")
+		return
+	end
+	if self.controllerMap[controller.Name] ~= nil then return end
 
-	self.controllerMap[controller.name] = controller
+	self.controllerMap[controller.Name] = controller
 	local interests = controller:ListNotificationInterests()
 
 	local observer

@@ -1,7 +1,5 @@
-local bagModel = require "model.bag"
-
-local bagCtrl = KController:Extend{
-	name = "bagCtrl";
+local bagController = KController:Extend{
+	Name = "bagController2013-1-10";
 
 	onRegister = function(self)
 		-- 
@@ -9,12 +7,12 @@ local bagCtrl = KController:Extend{
 
 	ListNotificationInterests = function(self)
 		return {
-			bagModel.EVENT_BAG_GET
+			roleModel.EVENT_BAG_GET
 		}
 	end;
 
 	HandleNotification = function(self, notification)
-		if notification.name == bagModel.EVENT_BAG_GET then
+		if notification.name == roleModel.EVENT_BAG_GET then
 			log4j.Debug("Execute notice: %s", notification.name)
 			self.actionBagGet()
 		end
@@ -24,8 +22,6 @@ local bagCtrl = KController:Extend{
 
 	actionBagGet = function(self, param)
 		-- test for reading csv data
-	    local util = require "kodelua.util"
-		local csv = require "kodelua.csv"
 		nums, data, labels = csv.Load("./kodelua/tests/player.csv")
 		print("Player data rows: ", nums)
 		util.Dump(labels, "Label")
@@ -33,7 +29,6 @@ local bagCtrl = KController:Extend{
 	end;
 
 	actionBagTidy = function(self, param)
-		local util = require "kodelua.util"
 		util.Dump(param)
 		print(self.Name)
 		print("actionBagTidy")
@@ -48,4 +43,4 @@ local bagCtrl = KController:Extend{
 	end
 }
 
-return bagCtrl
+return bagController

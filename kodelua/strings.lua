@@ -1,32 +1,5 @@
 local strings
 strings = {
-	Split = function(str, separator, maxNb)
-		if str:find(separator) == nil then
-			return { str }
-		end
-		
-		if maxNb == nil or maxNb < 1 then
-			maxNb = 0
-		end
-		
-		local result = {}
-		local pat = "(.-)" .. separator .. "()"
-		local nb = 0
-		local lastPos
-		for part, pos in str:gfind(pat) do
-			nb = nb + 1
-			result[nb] = part
-			lastPos = pos
-			if nb == maxNb then break end
-		end
-
-		if nb ~= maxNb then
-			result[nb + 1] = str:sub(lastPos)
-		end
-		
-		return result
-	end;
-
 	PushBuffer = function(tbl, str)
 		if tbl and str then
 			table.insert(tbl, str)
