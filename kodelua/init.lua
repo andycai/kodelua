@@ -46,6 +46,8 @@ log4j = require "kodelua.log4j"
 csv = require "kodelua.csv"
 json = require "kodelua.encoding.json"
 
+--
+lhelper=require "kodelua.luahelper"
 -- avoid memory leak
 collectgarbage("setpause", 100)
 collectgarbage("setstepmul", 5000)

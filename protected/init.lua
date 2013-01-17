@@ -15,3 +15,5 @@ roleService = require "serv.role"
 bagService = require "serv.bag"
 
 gameMessageService = require "serv.gamemessage"
+
+maingGameSceneService=require "serv.maingamesceneserv"

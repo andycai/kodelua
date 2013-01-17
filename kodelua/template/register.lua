@@ -1,0 +1,1 @@
+{ctrl=require "ctrl.{{name}}"; view=require "view.{{name}}.{{name}}pane"};
