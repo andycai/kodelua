@@ -1,13 +1,13 @@
-local Facade = Object:Extend{
+kode.facade = kode.object:extend{
 	observerMap = {};
 	controllerMap = {}
 }
 
-function Facade:New()
-	log4j.Error("Singleton cannot be instantiated.")
+function kode.facade:new()
+	log4l.error("Singleton cannot be instantiated.")
 end
 
-function Facade:registerObserver(notificationName, observer)
+function kode.facade:registerObserver(notificationName, observer)
 	if self.observerMap[notificationName] == nil then
 		self.observerMap[notificationName] = {observer}
 	else
@@ -15,24 +15,24 @@ function Facade:registerObserver(notificationName, observer)
 	end
 end
 
-function Facade:notifyObservers(notification)
+function kode.facade:notifyObservers(notification)
 	local observers
 	local observer
 	if self.observerMap[notification.name] then
 		observers = self.observerMap[notification.name]
 		for i=1, #observers do
 			observer = observers[i]
-			observer:NotifyObserver(notification)
+			observer:notifyObserver(notification)
 		end
 	end
 end
 
-function Facade:removeObserver(notificationName, notifyContext)
+function kode.facade:removeObserver(notificationName, notifyContext)
 	local observers = self.observerMap[notificationName]
 	if observers == nil or type(observers) ~= "table" then return end
 	for i=1, #observers do
-		if observers[i] and observers[i]:CompareNotifyContext(notifyContext) then
-			log4j.Info("Removed Observer notification: %s", notificationName)
+		if observers[i] and observers[i]:compareNotifyContext(notifyContext) then
+			log4l.info("Removed Observer notification: %s", notificationName)
 			table.remove(observers, i)
 			break
 		end
@@ -43,25 +43,27 @@ function Facade:removeObserver(notificationName, notifyContext)
 
 end
 
-function Facade:SendNotification(name, body, kind)
-	log4j.Info("SendNotification: name=%s, kind=%s", name, kind)
-	self:notifyObservers(KNotification:Extend{name=name, body=body, kind=kind})
+function kode.facade:sendNotification(name, ...)
+	body = select(1, ...) or {}
+	kind = select(2, ...) or ""
+	log4l.info("sendNotification: name=%s, type=%s", name, kind)
+	self:notifyObservers(kode.notification:extend{name=name, body=body, kind=kind})
 end
 
-function Facade:RegisterController(controller)
-	if controller.Name == nil then 
+function kode.facade:registerController(controller)
+	if controller.name == nil then 
 		error("controller need a Name")
 		return
 	end
-	if self.controllerMap[controller.Name] ~= nil then return end
+	if self.controllerMap[controller.name] ~= nil then return end
 
-	self.controllerMap[controller.Name] = controller
-	local interests = controller:ListNotificationInterests()
+	self.controllerMap[controller.name] = controller
+	local interests = controller:listNotificationInterests()
 
 	local observer
 	if #interests > 0 then
-		observer = KObserver:Extend{
-			notify = "HandleNotification",
+		observer = kode.observer:extend{
+			notify = "handleNotification",
 			context = controller
 		}
 		for i=1, #interests do
@@ -73,18 +75,18 @@ function Facade:RegisterController(controller)
 	controller:onRegister()
 end
 
-function Facade:RetrieveController(controllerName)
+function kode.facade:retrieveController(controllerName)
 	return self.controllerMap[controllerName]
 end
 
-function Facade:HasController(controllerName)
+function kode.facade:hasController(controllerName)
 	return self.controllerMap[controllerName] ~= nil
 end
 
-function Facade:RemoveController(controllerName)
+function kode.facade:removeController(controllerName)
 	local controller = self.controllerMap[controllerName]
 	if controller then
-		local interests = controller:ListNotificationInterests()
+		local interests = controller:listNotificationInterests()
 		for i=1, #interests do
 			self:removeObserver(interests[i], controller)
 		end
@@ -93,5 +95,3 @@ function Facade:RemoveController(controllerName)
 		self.controllerMap[controllerName] = nil
 	end
 end
-
-return Facade

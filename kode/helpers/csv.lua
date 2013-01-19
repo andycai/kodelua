@@ -1,5 +1,4 @@
-local csv
-csv = {}
+kode.csv = {}
 
 -- load data from a .csv file
 local function loadFile(path)
@@ -31,7 +30,7 @@ local function makeLine(line_text)
 	return nums, values
 end
 
-function csv.Load(path)
+function kode.csv.Load(path)
 	if path == nil then return nil, nil, nil end
 
 	local data = {}
@@ -44,5 +43,3 @@ function csv.Load(path)
 
 	return nums-1, data, labels
 end
-
-return csv

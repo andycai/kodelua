@@ -1,15 +1,16 @@
-local bagService = KService:Extend()
+local bagService = BaseService:extend()
+local meta = bagService
 
-function bagService:reqBagGet()
-	log4j.Debug("Request getting bag infomation")
+function meta:reqBagGet()
+	log4l.debug("Request getting bag infomation")
 	self.action = "bag.get"
 	self.param = {}
-	self:Request()
+	self:request()
 end
-function bagService:onBagGet(param)
+function meta:onBagGet(param)
 	-- save to model
 	-- send notice
-	self:Notify(roleModel.EVENT_BAG_GET, {1, 3, 5}, "common notice")
+	self:notify(roleModel.EVENT_BAG_GET, {1, 3, 5}, "common notice")
 end
 
-return bagService
+return meta

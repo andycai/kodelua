@@ -1,7 +1,14 @@
-local BaseModel = require "model.base"
-local bagmodel = BaseModel:Extend{
+local bagmodel = BaseModel:extend{
 	EVENT_BAG_GET = "EVENT_BAG_GET";
 	EVENT_BAG_TIDY = "EVENT_BAG_TIDY"
 }
+local meta = basemodel
 
-return bagmodel
+function meta:getData()
+    -- body
+end
+function meta:setData(param)
+    -- body
+end
+
+return meta

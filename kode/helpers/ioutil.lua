@@ -1,7 +1,6 @@
-local ioutil
-ioutil = {}
+kode.ioutil = {}
 
-function ioutil.Scandir(directory)
+function kode.ioutil.scandir(directory)
     local i, t, popen = 0, {}, io.popen
     -- for filename in popen('ls -a "'..directory..'"'):lines() do
     for filename in popen('dir "'..directory..'" /b /ad'):lines() do
@@ -11,7 +10,7 @@ function ioutil.Scandir(directory)
     return t
 end
 
-function ioutil.Read(path)
+function kode.ioutil.read(path)
 	local file = io.open(path, "r")
 	if file then
 		local content = file:read("*a")
@@ -21,7 +20,7 @@ function ioutil.Read(path)
 	return nil
 end
 
-function ioutil.Wirte(path, content)
+function kode.ioutil.wirte(path, content)
 	local file = io.open(path, "w+")
 	if file then
 		if file:write(content) == nil then return false end
@@ -32,7 +31,7 @@ function ioutil.Wirte(path, content)
 	end
 end
 
-function ioutil.Exists(path)
+function kode.ioutil.exists(path)
 	local file = io.open(path, "r")
 	if file then
 		io.close(file)
@@ -41,7 +40,7 @@ function ioutil.Exists(path)
 	return false
 end
 
-function ioutil.Filesize(path)
+function kode.ioutil.filesize(path)
 	local size = false
 	local file = io.open(path, "r")
 	if file then
@@ -54,7 +53,7 @@ function ioutil.Filesize(path)
 end
 
 -- returns information [dirname, filename, basename, extname] about a file path
-function ioutil.Pathinfo(path)
+function kode.ioutil.pathinfo(path)
 	local pos = string.len(path)
 	local extpos = pos + 1
 	while pos > 0 do
@@ -81,7 +80,7 @@ function ioutil.Pathinfo(path)
 end
 
 -- Helper function that loads a file into ram.
-function ioutil.LoadFile(fromDir, name)
+function kode.ioutil.loadFile(fromDir, name)
 	local intmp = assert(io.open(from_dir .. name, 'r'))
 	local content = intmp.read("*a")
 	intmp:close()
@@ -91,7 +90,7 @@ end
 
 -- Loads a source file, but converts it with line numbering only
 -- showing from first line to last line
-function ioutil.LoadLines(source, first, last)
+function kode.ioutil.loadLines(source, first, last)
 	local f = io.open(source)
 	local lines = {}
 	local i = 0
@@ -106,5 +105,3 @@ function ioutil.LoadLines(source, first, last)
 
 	return table.concat(lines, '\n')
 end
-
-return ioutil

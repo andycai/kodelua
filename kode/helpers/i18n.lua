@@ -67,4 +67,6 @@ local __meta = {
 s:SetFallback('zh')
 s:SetNamespace('zh')
 
-return setmetatable(s, __meta)
+kode.say = setmetatable(s, __meta)
+
+return kode.say

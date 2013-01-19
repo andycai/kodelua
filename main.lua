@@ -12,27 +12,30 @@ end
 function Route(response)
 	xpcall(function()
 		if response then
-			local resp = json.Decode(response)
-			local act = strings.Explode(resp.act, ".")
-			local service = Getglobal(act[1].."Service")
+			local resp = kode.json.decode(response)
+			local act = string.explode(resp.act, ".")
+			local service = kode.getglobal(act[1].."Service")
 			local action = act[2]
 			if service ~= nil then
-				service[action](service, resp.param)
+				if service[action] then
+					service[action](service, resp.param)
+				else
+					log4l.debug("need a function [%s] in service [%s]", action, act[1])
+				end
 			else
-				log4j.Debug("Wrong aciton: %s", response)
+				log4l.debug("Wrong aciton: %s", response)
 			end
 		end
 	end, __G__TRACKBACK__)
 end
 
 local function main()
-	require "kodelua.init"
-	require "init"
-	-- register controllers
-	require "register"
+	require "kode.init"		-- framework
+	require "init"			-- app
+	require "register" 		-- register controllers
+	require "appfacade"		-- application
 
-	-- login
-	roleService:reqOnline()
+	appFacade:startup()		-- startup
 end
 
 xpcall(main, __G__TRACKBACK__)

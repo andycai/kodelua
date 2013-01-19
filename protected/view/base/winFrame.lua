@@ -18,7 +18,7 @@ function winFrame.new(title,x,y,width,height)
 	win:setPosition(0,0)
 	winLayer:addChild(win)
 		
-	local winTitle=CCScale9Sprite:create(s_winTitle,CCRectMake(0,0,0,0))
+	local winTitle=CCScale9Sprite:create(GetUIPath(s_base_winFrameTitle),CCRectMake(0,0,0,0))
 	winTitle:setAnchorPoint(ccp(0.5,0.5))
 	winTitle:setContentSize(CCSizeMake(width, height/8))
 	winTitle:setPosition(0,height/2-height/16)
@@ -32,8 +32,8 @@ function winFrame.new(title,x,y,width,height)
 		winLayer:removeFromParentAndCleanup (true)
 	end	
 	local wincloseBtn=ui.newMenuItemImage({
-	image=s_winFrameClose,
-	imageSelected=s_wincloseChoose,
+	image=GetUIPath(s_base_winFrameClose),
+	imageSelected=GetUIPath(s_base_winCloseChoose),
 	listener=winclose,
 	x=width/2,
 	y=height/2,

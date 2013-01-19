@@ -1,9 +1,9 @@
-local Controller = KNotifier:Extend{
+kode.controller = kode.notifier:extend{
 	controllerName = "BaseController";
 	viewComponent = {}
 }
 
-function Controller:New(viewComponent)
+function kode.controller:new(viewComponent)
 	assert(self.viewComponent ~= nil, "need a viewComponent")
 	self.viewComponent = viewComponent
 
@@ -14,17 +14,17 @@ function Controller:New(viewComponent)
 	return o
 end
 
-function Controller:onRegister()
+function kode.controller:onRegister()
 end
 
-function Controller:onRemove()
+function kode.controller:onRemove()
 end
 
-function Controller:ListNotificationInterests()
+function kode.controller:listNotificationInterests()
 	return {}
 end
 
-function Controller:HandleNotification(notification)
+function kode.controller:handleNotification(notification)
 	if notification.name then
 		local action = "action" .. notification.name
 		if self[action] then
@@ -32,5 +32,3 @@ function Controller:HandleNotification(notification)
 		end
 	end
 end
-
-return Controller

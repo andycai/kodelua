@@ -1,21 +1,19 @@
-local facade = require "kodelua.mvc.facade"
-
-local appFacade = facade:Extend{
-	NOTI_START_APP = "StartApp";
+appFacade = kode.facade:extend{
+	EVENT_START_APP = "StartApp";
 	-- controllers = {
 	-- 	bagController = require "controller.bagcontroller"
 	-- }
 }
 
-function appFacade:Startup(...)
-	self:SendNotification(self.NOTI_START_APP)
+function appFacade:startup(...)
+	self:sendNotification(self.EVENT_START_APP)
 end
 
 -- register contoller
-function appFacade:Register(controller, viewComponent)
-	local ctrlInstance = controller:New(viewComponent)
+function appFacade:register(controller, viewComponent)
+	local ctrlInstance = controller:new(viewComponent)
 	if controller and viewComponent then
-		self:RegisterController(ctrlInstance)
+		self:registerController(ctrlInstance)
 	end
 end
 

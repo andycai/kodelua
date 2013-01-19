@@ -1,6 +1,6 @@
 local {{name}}Pane = {}
 
-function {{name}}Pane:New()
+function {{name}}Pane:new()
 	-- body
 end
 

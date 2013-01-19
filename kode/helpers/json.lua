@@ -10,26 +10,23 @@ if __FRAMEWORK_ENVIRONMENT__ == "product" then
 end
 
 if not ok then
-	local simplejson = require "kodelua.encoding.simplejson"
+	local simplejson = require "kode.helpers.simplejson"
 	encode = simplejson.encode
 	decode = simplejson.decode
 end
 
-local json
-json = {}
+kode.json = {}
 
-function json.Encode(tbl)
+function kode.json.encode(tbl)
 	local ok, result = pcall(encode, tbl)
 
 	if ok then return result end
 	error("json encode failed")
 end
 
-function json.Decode(str)
+function kode.json.decode(str)
 	local ok, result = pcall(decode, str)
 
 	if ok then return result end
 	error("json decode failed")
 end
-
-return json

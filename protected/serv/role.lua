@@ -1,23 +1,24 @@
-local roleService = KService:Extend()
+local roleService = BaseService:extend()
+local meta = roleService
 
-function roleService:reqRoleLogin()
+function meta:reqRoleLogin()
 	--
 end
-function roleService:onRoleLogin(param)
+function meta:onRoleLogin(param)
 	roleModel.Token = ""
 end
 
-function roleService:reqOnline()
+function meta:reqOnline()
 	self.action = "role.online"
 	self.param.token = roleModel.Token
-	self:Request()
+	self:request()
 end
-function roleService:onOnline(param)
+function meta:onOnline(param)
 	-- body
 end
 
-function roleService:reqRoleCreate()
+function meta:reqRoleCreate()
 	--
 end
 
-return roleService
+return meta
