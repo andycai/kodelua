@@ -11,4 +11,4 @@ Kodelua 为了开发手游，结合 Cocos2d-x 而开发一个轻量级的框架�
 - S 就是 Service 层，负责与服务器端（如果用在客户端，完全可以用在服务器端）交互，只提供2中接口，请求和响应接口。
 
 ## 阅读文档
-[开始阅读](kodelua/blob/master/00.md)
+[开始阅读](kodelua/blob/master/doc/00.md)
