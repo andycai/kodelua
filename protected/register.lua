@@ -1,9 +1,11 @@
+if kode == nil then return end
+
 local appFacade = require "appfacade"
 
 local controllers = {
-	{ctrl=require "ctrl.role"; view=require "view.role.rolepane"};
-	{ctrl=require "ctrl.bag"; view=require "view.bag.bagpane"};
-	{ctrl=require "ctrl.maingame";view=require "view.maingame.maingame"};
+	{ctrl=require "controller.role"; view=require "view.role.rolepane"};
+	{ctrl=require "controller.bag"; view=require "view.bag.bagpane"};
+	{ctrl=require "controller.maingame";view=require "view.maingame.maingame"};
 }
 
 for i,v in ipairs(controllers) do

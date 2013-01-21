@@ -1,3 +1,5 @@
+if kode == nil then return end
+
 local {{name}}Service = BaseService:extend()
 local meta = {{name}}Service
 

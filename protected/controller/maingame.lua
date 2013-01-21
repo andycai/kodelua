@@ -1,3 +1,5 @@
+if kode == nil then return end
+
 local maingamesceneController = BaseController:extend{
 	name = "maingamesceneController2013-1-16";
 }
@@ -44,7 +46,7 @@ function meta:actorInfomationBtnCall()
 		
 	end
 	-- this.test()
-	self.test()	// 可以直接使用 self
+	self.test()	-- 可以直接使用 self
 end
 
 function meta:bagpaneBtnCall()

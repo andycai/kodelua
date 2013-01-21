@@ -1,3 +1,5 @@
+if kode == nil then return end
+
 local {{name}}Controller = BaseController:extend{
 	name = "{{name}}Controller{{time}}";
 }

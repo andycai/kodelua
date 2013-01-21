@@ -2,26 +2,30 @@
 -- compatible with lua 5.1
 -- http://www.it-rfc.de
 
-module("kode.base64", package.seeall)
+--module("kode.base64", package.seeall)
+
+if kode == nil then return end
+
+kode.base64 = {}
 
 -- bitshift functions (<<, >> equivalent)
 -- shift left
-function lsh(value,shift)
+function kode.base64.lsh(value,shift)
   return (value*(2^shift)) % 256
 end
 
 -- shift right
-function rsh(value,shift)
+function kode.base64.rsh(value,shift)
   return math.floor(value/2^shift) % 256
 end
 
 -- return single bit (for OR)
-function bit(x,b)
+function kode.base64.bit(x,b)
   return (x % 2^b - x % 2^(b-1) > 0)
 end
 
 -- logic OR for number values
-function lor(x,y)
+function kode.base64.lor(x,y)
   result = 0
   for p=1,8 do result = result + (((bit(x,p) or bit(y,p)) == true) and 2^(p-1) or 0) end
   return result
@@ -32,7 +36,7 @@ local base64chars = {[0]='A',[1]='B',[2]='C',[3]='D',[4]='E',[5]='F',[6]='G',[7]
 
 -- function encode
 -- encodes input string to base64.
-function encode(data)
+function kode.base64.encode(data)
   local bytes = {}
   local result = ""
   for spos=0,string.len(data)-1,3 do
@@ -51,7 +55,7 @@ local base64bytes = {['A']=0,['B']=1,['C']=2,['D']=3,['E']=4,['F']=5,['G']=6,['H
 
 -- function decode
 -- decode base64 input to string
-function decode(data)
+function kode.base64.decode(data)
   local chars = {}
   local result=""
   for dpos=0,string.len(data)-1,4 do
@@ -62,3 +66,5 @@ function decode(data)
   end
   return result
 end
+
+return kode.base64

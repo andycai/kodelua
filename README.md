@@ -1,7 +1,7 @@
 Kodelua 是一个轻量级的 MVC 框架
 ========
 
-Kodelua 为了开发手游，结合 Cocos2d-x 而开发一个轻量级的框架。
+Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。
 
 什么是 MVCS？
 

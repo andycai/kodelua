@@ -1,3 +1,5 @@
+if kode == nil then return end
+
 local {{name}}Model = BaseModel:extend{
 	-- events
 	EVENT_ACTION_NAME = "EVENT_ACTION_NAME";

@@ -1,3 +1,5 @@
+if kode == nil then return end
+
 appFacade = kode.facade:extend{
 	EVENT_START_APP = "StartApp";
 	-- controllers = {
