@@ -10,5 +10,7 @@ Kodelua 为了开发手游，结合 Cocos2d-x 而开发一个轻量级的框架�
 - C 就是 Controller 层，处理游戏逻辑的地方，她需要与其他所有层打交道，她是总管。
 - S 就是 Service 层，负责与服务器端（如果用在客户端，完全可以用在服务器端）交互，只提供2中接口，请求和响应接口。
 
+推荐结合 [quick-cocos2d-x](https://github.com/dualface/quick-cocos2d-x) 框架一起使用，quick-cocos2d-x 针对 cocos2d-x 进行的大量的封装，并且能支持屏幕自适应，开发 Android 应用不在烦恼：）。
+
 ## 阅读文档
 [开始阅读](kodelua/blob/master/doc/00.md)
