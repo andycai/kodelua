@@ -30,7 +30,7 @@ local function makeLine(line_text)
 	return nums, values
 end
 
-function kode.csv.Load(path)
+function kode.csv.load(path)
 	if path == nil then return nil, nil, nil end
 
 	local data = {}

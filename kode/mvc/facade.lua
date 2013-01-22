@@ -45,8 +45,8 @@ end
 
 function kode.facade:sendNotification(name, ...)
 	body = select(1, ...) or {}
-	kind = select(2, ...) or ""
-	log4l.info("sendNotification: name=%s, type=%s", name, kind)
+	kind = select(2, ...) or "nil"
+	log4l.info("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
 	self:notifyObservers(kode.notification:extend{name=name, body=body, kind=kind})
 end
 

@@ -8,7 +8,7 @@ appFacade = kode.facade:extend{
 }
 
 function appFacade:startup(...)
-	self:sendNotification(self.EVENT_START_APP)
+	self:sendNotification(self.EVENT_START_APP, {notice="startup"})
 end
 
 -- register contoller

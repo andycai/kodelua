@@ -12,5 +12,30 @@ Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一�
 
 推荐结合 [quick-cocos2d-x](https://github.com/dualface/quick-cocos2d-x) 框架一起使用，quick-cocos2d-x 针对 cocos2d-x 进行的大量的封装，并且能支持屏幕自适应，开发 Android 应用不在烦恼：）。
 
+运行测试，在终端下运行：./main.lua，运行前请确保你已经安装了 lua 环境
+
+输出：
+
+	[Info] sendNotification: name=StartApp, body={
+	  notice = "startup",
+	}, type=nil
+	{
+	  1 = {
+	    1 = "Andy",
+	    2 = "male",
+	    3 = "18",
+	  },
+	  2 = {
+	    1 = "Nataly",
+	    2 = "female",
+	    3 = "18",
+	  },
+	  3 = {
+	    1 = "Peter",
+	    2 = "male",
+	    3 = "20",
+	  },
+	}
+
 ## 阅读文档
 [开始阅读](kodelua/blob/master/doc/00.md)
