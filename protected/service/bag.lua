@@ -10,7 +10,7 @@ end
 function meta:onBagGet(param)
 	-- save to model
 	-- send notice
-	self:notify(roleModel.EVENT_BAG_GET, {1, 3, 5}, "common notice")
+	self:notify(bagModel.EVENT_BAG_GET, {1, 3, 5}, "common notice")
 end
 
 return meta

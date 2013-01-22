@@ -4,10 +4,10 @@ local bagmodel = BaseModel:extend{
 }
 local meta = basemodel
 
-function meta:getData()
+function meta:getBagData()
     -- body
 end
-function meta:setData(param)
+function meta:setBagData(param)
     -- body
 end
 

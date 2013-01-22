@@ -5,5 +5,5 @@ BaseController = require "controller.base"
 BaseService = require "service.base"
 BaseModel = require "model.base"
 
-roleModel = require "model.role"
-roleService = require "service.role"
+bagModel = require "model.bag"
+bagService = require "service.bag"
