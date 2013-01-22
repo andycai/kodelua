@@ -30,17 +30,8 @@ function Route(response)
 	end, __G__TRACKBACK__)
 end
 
-kode.appendPkgPath("./thirdparty/quick-cocos2d-x/")
 -- require "lang.zh"
-require("util.resconfig")   
-require("util.global")
--- require("framework.init")
--- require("framework.client.init")
-
--- some interfaces for application
-BaseController = require "controller.base"
-BaseService = require "service.base"
-BaseModel = require "model.base"
-
-roleModel = require "model.role"
-roleService = require "service.role"
+require "using"
+require "util.resconfig"   
+require "util.global" 
+require "export"

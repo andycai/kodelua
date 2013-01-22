@@ -1,18 +1,18 @@
 --[==[
-s = require "kodelua.i18n"
+s = require "kode.i18n"
 
-s:SetNamespace("en")
+s:setnamespace("en")
 
-s:Set('money', 'I have %s dollars')
-s:Set('wow', 'So much money!')
+s:set('money', 'I have %s dollars')
+s:set('wow', 'So much money!')
 
 print(s('money', 1000)) -- I have 1000 dollars
 
-s:SetNamespace("fr") -- switch to french!
-s:Set('wow', "Tant d'argent!")
+s:setnamespace("fr") -- switch to french!
+s:set('wow', "Tant d'argent!")
 
 print(s('wow')) -- Tant d'argent!
-s:SetNamespace("en")  -- switch back to english!
+s:setnamespace("en")  -- switch back to english!
 print(s('wow')) -- So much money!
 --]==]
 
@@ -21,21 +21,21 @@ local current_namespace
 local fallback_namespace
 
 local s = {
-	SetNamespace = function(self, namespace)
+	setnamespace = function(self, namespace)
 		current_namespace = namespace
 		if not registry[current_namespace] then
 			registry[current_namespace] = {}
 		end
 	end;
 
-	SetFallback = function(self, namespace)
+	setfallback = function(self, namespace)
 		fallback_namespace = namespace
 		if not registry[fallback_namespace] then
 			registry[fallback_namespace] = {}
 		end
 	end;
 
-	Set = function(self, key, value)
+	set = function(self, key, value)
 		registry[current_namespace][key] = value
 	end
 }
@@ -64,9 +64,9 @@ local __meta = {
 	end
 }
 
-s:SetFallback('zh')
-s:SetNamespace('zh')
+s:setfallback('zh')
+s:setnamespace('zh')
 
-kode.say = setmetatable(s, __meta)
+kode.i18n = setmetatable(s, __meta)
 
-return kode.say
+return kode.i18n
