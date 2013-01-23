@@ -9,22 +9,22 @@ end)("../")
 
 require "lunit"
 
-local s = require "kodelua.i18n"
+local s = require "kode.helpers.i18n"
 
 module(..., package.seeall, lunit.testcase)
 
-function test_SetNamespace()
-	s:SetNamespace("en")
-	s:Set("面向对象", "Object-oriented")
+function test_setnamespace()
+	s:setnamespace("en")
+	s:set("面向对象", "Object-oriented")
 	assert_equal(s("面向对象"), "Object-oriented")
 
-	s:SetNamespace("tw")
-	s:Set("面向对象", "面向物件")
+	s:setnamespace("tw")
+	s:set("面向对象", "面向物件")
 	assert_equal(s("面向对象"), "面向物件")
 end
 
-function test_Set()
-	s:SetNamespace("en")
-	s:Set("面向对象", "Object-oriented")
+function test_set()
+	s:setnamespace("en")
+	s:set("面向对象", "Object-oriented")
 	assert_equal(s("面向对象"), "Object-oriented")
 end

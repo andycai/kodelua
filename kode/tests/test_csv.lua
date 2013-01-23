@@ -9,12 +9,12 @@ end)("../")
 
 require "lunit"
 
-local csv = require "kodelua.csv"
+local csv = require "kode.helpers.csv"
 
 module(..., package.seeall, lunit.testcase)
 
-function test_LoadAndSave()
-	nums, data, labels = csv.LoadAndSave("../kodelua/tests/player.csv")
+function test_load()
+	nums, data, labels = kode.csv.load("../kode/tests/player.csv")
 
 	assert_equal(nums, 3)
 	assert_equal(labels[1], "name")

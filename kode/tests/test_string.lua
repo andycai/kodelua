@@ -10,35 +10,22 @@ end)("../")
 
 require "lunit"
 
-local strings = require "kodelua.strings"
+local strings = require "kode.ext.string"
 
 module(..., package.seeall, lunit.testcase)
 
-function test_Split()
+function test_split()
 	local str = "a, b, c, d"
-	local tbl = strings.Split(str, ",")
+	local tbl = string.split(str, ",")
 	assert_equal(tbl[1], "a")
 	assert_not_equal(tbl[2], "b")
 	assert_not_equal(tbl[3], "c")
 end
 
-function test_Explode()
+function test_explode()
 	local str = "a, b, c, d"
-	local tbl = strings.Explode(str, ",")
+	local tbl = string.explode(str, ",")
 	assert_equal(tbl[1], "a")
 	assert_not_equal(tbl[2], "b")
 	assert_not_equal(tbl[3], "c")
-end
-
-function test_PushBuffer()
-	local str = "a, b, c, d"
-	local tbl = {}
-	strings.PushBuffer(tbl, str)
-	assert_equal(tbl[1], "a, b, c, d")
-end
-
-function test_PullBuffer()
-	local tbl = {"a", "b", "c", "d"}
-	local str = strings.PullBuffer(tbl)
-	assert_equal(str, "abcd")
 end

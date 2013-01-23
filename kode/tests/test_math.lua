@@ -9,15 +9,15 @@ end)("../")
 
 require "lunit"
 
-local maths = require "kodelua.math"
+local maths = require "kode.ext.math"
 
 module(..., package.seeall, lunit.testcase)
 
-function test_Round()
+function test_round()
 	local num = 123.43234234
 	local num2 = 654.978043234234
-	assert_equal(maths.Round(num), 123)
-	assert_equal(maths.Round(num*100)/100, 123.43)
-	assert_equal(maths.Round(num2), 655)
-	assert_equal(maths.Round(num2*100)/100, 654.98)
+	assert_equal(math.round(num), 123)
+	assert_equal(math.round(num*100)/100, 123.43)
+	assert_equal(math.round(num2), 655)
+	assert_equal(math.round(num2*100)/100, 654.98)
 end

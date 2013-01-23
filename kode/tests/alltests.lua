@@ -10,8 +10,7 @@ end)("../")
 require "lunit"
 
 require "kodelua.tests.test_math"
-require "kodelua.tests.test_strings"
+require "kodelua.tests.test_string"
 require "kodelua.tests.test_i18n"
 require "kodelua.tests.test_csv"
-require "kodelua.tests.test_map"
 require "kodelua.tests.test_fmt"

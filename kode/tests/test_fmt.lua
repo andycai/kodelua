@@ -9,13 +9,13 @@ end)("../")
 
 require "lunit"
 
-local fmt = require "kodelua.fmt"
+local fmt = require "kode.helpers.fmt"
 
 module(..., package.seeall, lunit.testcase)
 
 function test_Sprintf()
 	local format = "format %s: %0.2f"
 	local num = 654.978043234234
-	local result = fmt.Sprintf(format, "number", num)
+	local result = kode.fmt.sprintf(format, "number", num)
 	assert_equal(result, "format number: 654.98")
 end

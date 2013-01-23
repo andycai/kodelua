@@ -1,22 +1,22 @@
-kode.say:SetNamespace("zh")
+kode.i18n:setnamespace("zh")
 
-kode.say:Set("output.pending", "开发中")
-kode.say:Set("output.failure", "失败")
-kode.say:Set("output.success", "成功")
+kode.i18n:set("output.pending", "开发中")
+kode.i18n:set("output.failure", "失败")
+kode.i18n:set("output.success", "成功")
 
-kode.say:Set("output.pending_plural", "开发中")
-kode.say:Set("output.failure_plural", "失败")
-kode.say:Set("output.success_plural", "成功")
+kode.i18n:set("output.pending_plural", "开发中")
+kode.i18n:set("output.failure_plural", "失败")
+kode.i18n:set("output.success_plural", "成功")
 
-kode.say:Set("output.pending_zero", "开发中")
-kode.say:Set("output.failure_zero", "失败")
-kode.say:Set("output.success_zero", "成功")
+kode.i18n:set("output.pending_zero", "开发中")
+kode.i18n:set("output.failure_zero", "失败")
+kode.i18n:set("output.success_zero", "成功")
 
-kode.say:Set("output.pending_single", "开发中")
-kode.say:Set("output.failure_single", "失败")
-kode.say:Set("output.success_single", "成功")
+kode.i18n:set("output.pending_single", "开发中")
+kode.i18n:set("output.failure_single", "失败")
+kode.i18n:set("output.success_single", "成功")
 
-kode.say:Set("output.seconds", "秒")
+kode.i18n:set("output.seconds", "秒")
 
 failure_messages = {
   "你一共提交了[%d]个测试用例",
