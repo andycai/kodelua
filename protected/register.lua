@@ -1,7 +1,5 @@
 if kode == nil then return end
 
-local appFacade = require "appfacade"
-
 local controllers = {
 	{ctrl=require "controller.bag"; view=require "view.bag.bagpane"};
 }

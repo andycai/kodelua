@@ -47,7 +47,7 @@ local __meta = {
 		local str = registry[current_namespace][key] or registry[fallback_namespace][key]
 
 		if str == nil then
-			return nil
+			str = key
 		end
 		str = tostring(str)
 		local strings = {}

@@ -9,8 +9,8 @@ end
 local function main()
 	require "kode.init"		-- framework
 	require "init"			-- app
-	require "register" 		-- register controllers
 	require "appfacade"		-- application
+    require "register"      -- register controllers
 
 	appFacade:startup()		-- startup
 end

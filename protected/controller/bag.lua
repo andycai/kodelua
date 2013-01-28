@@ -20,7 +20,7 @@ function meta:handleNotification(notification)
 		self:actionBagGet(notification.body)
 	elseif notification.name == appFacade.EVENT_START_APP then
 		local nums, data, labels = kode.csv.load("./kode/tests/player.csv")
-
+		puts(kode.i18n("Testing %s", "bagController"))
 		kode.dump(data)
 	end
 end
