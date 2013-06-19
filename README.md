@@ -38,4 +38,4 @@ Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一�
 	}
 
 ## 阅读文档
-[开始阅读](kodelua/blob/master/doc/00.md)
+[开始阅读](doc/00.md)
