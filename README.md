@@ -37,5 +37,7 @@ Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一�
 	  },
 	}
 
+windows 下运行 makeluamodule.exe 来创建新的模块，自动创建一个完整项目所有的代码和文件。
+
 ## 阅读文档
 [开始阅读](doc/00.md)
