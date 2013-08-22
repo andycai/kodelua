@@ -8,6 +8,10 @@ function kode.facade:new()
 end
 
 function kode.facade:registerObserver(notificationName, observer)
+	if not notificationName then
+		print("facade:registerObserver: notificationName is empty")
+		return 
+	end
 	if self.observerMap[notificationName] == nil then
 		self.observerMap[notificationName] = {observer}
 	else
