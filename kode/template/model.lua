@@ -1,16 +1,18 @@
 if kode == nil then return end
 
 local {{name}}Model = BaseModel:extend{
-	-- events
-	EVENT_ACTION_NAME = "EVENT_ACTION_NAME";
+	-- member
 }
 local meta = {{name}}Model
 
+-- events
+EVENT_MODULE_ACTION_NAME = "EVENT_MODULE_ACTION_NAME";
+
 function meta:getData()
-    -- body
+	-- body
 end
 function meta:setData(param)
-    -- body
+	-- body
 end
 
 return meta
