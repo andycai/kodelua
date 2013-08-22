@@ -10,22 +10,22 @@ kode.base64 = {}
 
 -- bitshift functions (<<, >> equivalent)
 -- shift left
-function kode.base64.lsh(value,shift)
+local function lsh(value,shift)
   return (value*(2^shift)) % 256
 end
 
 -- shift right
-function kode.base64.rsh(value,shift)
+local function rsh(value,shift)
   return math.floor(value/2^shift) % 256
 end
 
 -- return single bit (for OR)
-function kode.base64.bit(x,b)
+local function bit(x,b)
   return (x % 2^b - x % 2^(b-1) > 0)
 end
 
 -- logic OR for number values
-function kode.base64.lor(x,y)
+local function lor(x,y)
   result = 0
   for p=1,8 do result = result + (((bit(x,p) or bit(y,p)) == true) and 2^(p-1) or 0) end
   return result
