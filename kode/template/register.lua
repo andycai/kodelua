@@ -1,1 +1,1 @@
-{ctrl=require "controller{{name}}"; view=require "view.{{name}}.{{name}}pane"};
+{ctrl=require "app.controller{{name}}"; view=require "app.view.{{name}}.{{name}}pane"};

@@ -2,7 +2,7 @@ if kode == nil then return end
 
 -- {nil}; required
 local controllers = {
-	{ctrl=require "controller.bag"; view=require "view.bag.bagpane"};
+	{ctrl=require "app.controller.bag"; view=require "app.view.bag.bagpane"};
 	{nil};
 }
 
