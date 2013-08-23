@@ -31,7 +31,7 @@ function Route(response)
 end
 
 -- require "lang.zh"
-require "using"
-require "util.resconfig"   
-require "util.global" 
+require "config.init"
+require "util.init"
+require "using" 
 require "export"

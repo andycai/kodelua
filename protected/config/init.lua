@@ -1,1 +1,1 @@
-require "configf.resource"
+require "config.resource"

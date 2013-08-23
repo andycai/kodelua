@@ -1,7 +1,7 @@
 kode = {}
 using = {}
 
-function kode.appendPkgPath(...)
+function kode.appendPackagePath(...)
 	local args = {...}
 	for i=1, #args do
 		local pkgPath = package.path  
@@ -9,14 +9,12 @@ function kode.appendPkgPath(...)
 			pkgPath, args[i], args[i]) 
 	end
 end
-kode.appendPkgPath("./", "./protected/")
-
-__FRAMEWORK_ENVIRONMENT__ = "unknown"
+--kode.appendPackagePath("./")
 
 require "kode.object"
-require "kode.ext"
-require "kode.helpers"
-require "kode.mvc"
+require "kode.ext.init"
+require "kode.helpers.init"
+require "kode.mvc.init"
 
 -- avoid memory leak
 collectgarbage("setpause", 100)

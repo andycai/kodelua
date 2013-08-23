@@ -8,6 +8,9 @@ end
 
 local function main()
 	require "kode.init"		-- framework
+
+    kode.appendPackagePath("./protected/") -- append app directory to package path
+
 	require "init"			-- app
 	require "appfacade"		-- application
     require "register"      -- register controllers
