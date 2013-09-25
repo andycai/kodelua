@@ -88,10 +88,19 @@ function string.strpos(haystack, needle, offset)
 	return start_ and start_ - 1 or false
 end
 
-function string.strip(s, pattern)
+function string.strip_(s, pattern)
 	pattern = pattern or "%s+"
 	s = s:gsub("^" .. pattern, "")
 	s = s:gsub(pattern .. "$", "")
+	return s
+end
+
+function string.strip(s, ...)
+	local count = select("#", ...)
+	for i = 1, count do
+		local v = select(i, ...)
+		s = string.strip_(s, v)
+	end
 	return s
 end
 
