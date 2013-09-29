@@ -28,6 +28,13 @@ function puts(obj, ...)
  	print(kode.tostring(obj, ...))
 end
 
+function istrue(value)
+	if value ~= false and value ~= nil then
+		return true
+	end
+	return false
+end
+
 -- Function string.gfind was renamed string.gmatch. (Option LUA_COMPAT_GFIND) 
 function kode.getglobal(f)
 	local v = _G
