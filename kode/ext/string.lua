@@ -82,10 +82,16 @@ end
 
 -- find position of first occurrence of a string
 function string.strpos(haystack, needle, offset)
-	offset = offset or nil
+	offset = offset or 1
 	local start_, end_ = nil, nil
-	start_, end_ = string.find(haystack, needle)
+	start_, end_ = string.find(haystack, needle, offset)
 	return start_ and start_ - 1 or false
+end
+
+function string.indexOf(haystack, needle, offset)
+	local v = string.strpos(haystack, needle, offset)
+	if v == false then v = -1 end
+	return v
 end
 
 function string.strip_(s, pattern)
