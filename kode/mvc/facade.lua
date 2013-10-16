@@ -9,7 +9,7 @@ end
 
 function kode.facade:registerObserver(notificationName, observer)
 	if not notificationName then
-		print("facade:registerObserver: notificationName is empty")
+		log4l.error("facade:registerObserver: notificationName is empty")
 		return 
 	end
 	if self.observerMap[notificationName] == nil then
@@ -50,7 +50,7 @@ end
 function kode.facade:sendNotification(name, ...)
 	body = select(1, ...) or {}
 	kind = select(2, ...) or "nil"
-	log4l.info("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
+	-- log4l.info("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
 	self:notifyObservers(kode.notification:extend{name=name, body=body, kind=kind})
 end
 
@@ -71,7 +71,11 @@ function kode.facade:registerController(controller)
 			context = controller
 		}
 		for i=1, #interests do
-			self:registerObserver(interests[i], observer)
+			if not interests[i] then
+				log4l.error("interests[%s] is empty in controller %s", i, controller.name)
+			else
+				self:registerObserver(interests[i], observer)
+			end
 		end
 	end
 	-- local util = require "kodelua.util"
