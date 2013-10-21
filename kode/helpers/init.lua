@@ -35,6 +35,17 @@ function istrue(value)
 	return false
 end
 
+function isempty(t, key)
+	return (not t[key])
+end
+
+function checkvalue(value, msg)
+	if not msg then msg = "value is nil" end
+	if not value then
+		error(msg)
+	end
+end
+
 -- Function string.gfind was renamed string.gmatch. (Option LUA_COMPAT_GFIND) 
 function kode.getglobal(f)
 	local v = _G
