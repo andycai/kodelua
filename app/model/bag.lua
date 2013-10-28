@@ -1,8 +1,11 @@
+local Event = require "app.config.events"
+
 local bagmodel = BaseModel:extend{
-	EVENT_BAG_GET = "EVENT_BAG_GET";
-	EVENT_BAG_TIDY = "EVENT_BAG_TIDY"
 }
 local meta = bagmodel
+
+Event.EVENT_BAG_GET = "EVENT_BAG_GET";
+Event.EVENT_BAG_TIDY = "EVENT_BAG_TIDY"
 
 function meta:getBagData()
     -- body

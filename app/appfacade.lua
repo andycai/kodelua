@@ -1,14 +1,14 @@
+local Event = require "app.config.events"
+
 if kode == nil then return end
 
 appFacade = kode.facade:extend{
-	EVENT_START_APP = "StartApp";
-	-- controllers = {
-	-- 	bagController = require "controller.bagcontroller"
-	-- }
 }
 
-function appFacade:startup(...)
-	self:sendNotification(self.EVENT_START_APP, {notice="startup"})
+Event.EVENT_START_APP = "StartApp";
+
+function appFacade:startup()
+	self:sendNotification(Event.EVENT_START_APP, {notice="startup"})
 end
 
 -- register contoller

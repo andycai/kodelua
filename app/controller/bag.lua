@@ -1,3 +1,5 @@
+local Event = require "app.config.events"
+
 local bagController = BaseController:extend{
 	name = "bagController2013-1-10";
 }
@@ -9,16 +11,16 @@ end
 
 function meta:listNotificationInterests()
 	return {
-		bagModel.EVENT_BAG_GET,
-		appFacade.EVENT_START_APP
+		Event.EVENT_BAG_GET,
+		Event.EVENT_START_APP
 	}
 end
 
 function meta:handleNotification(notification)
-	if notification.name == bagModel.EVENT_BAG_GET then
+	if notification.name == Event.EVENT_BAG_GET then
 		log4l.debug("Execute notice: %s", notification.name)
 		self:actionBagGet(notification.body)
-	elseif notification.name == appFacade.EVENT_START_APP then
+	elseif notification.name == Event.EVENT_START_APP then
 		local nums, data, labels = kode.csv.load("./kode/tests/player.csv")
 		puts(kode.i18n("Testing %s", "bagController"))
 		kode.dump(data)

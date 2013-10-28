@@ -1,5 +1,7 @@
 if kode == nil then return end
 
+local Event = require "app.config.events"
+
 local {{name}}Controller = BaseController:extend{
 	name = "{{name}}Controller{{time}}";
 }
@@ -11,12 +13,12 @@ end
 
 function meta:listNotificationInterests()
 	return {
-		{{name}}Model.EVENT_ACTION_NAME
+		Event.EVENT_ACTION_NAME
 	}
 end
 
 function meta:handleNotification(notification)
-	if notification.name == {{name}}Model.EVENT_ACTION_NAME then
+	if notification.name == Event.EVENT_ACTION_NAME then
 		-- body
 	end
 end
