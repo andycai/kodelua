@@ -194,3 +194,48 @@ function table.tostring(tbl, indent, limit, depth, jstack)
 
 	return table.concat(output)
 end
+
+function table.shallowCopy(source, target, exclusions)
+	local source_type = type(source)
+	local copy, pass
+	if source_type == "table" then
+		copy = target or {}
+		for source_key, source_value in pairs(source) do
+			pass = false
+			if exclusions and #exclusions > 0 then
+				for i,v in ipairs(exclusions) do
+					if v == source_key then
+						pass = true
+						break
+					end
+				end
+			end
+			if not pass then
+				copy[source_key] = source_value
+			end
+		end
+	else -- number, string, boolean, etc
+		copy = source
+	end
+	return copy
+end
+
+function table.checkCopy(key, source, target)
+	if not target or not source then return end
+	
+	local found = false
+	for k,v in pairs(source) do		-- need optimize
+		if k == key then
+			found = true
+			break
+		end
+	end
+
+	if found then
+		if type(source[key]) == "table" then
+			target[key] = table.shallowCopy(source[key])
+		else
+			target[key] = source[key]
+		end
+	end
+end
