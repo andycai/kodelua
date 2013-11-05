@@ -114,7 +114,7 @@ end
 
 function table.each(t, func)
 	for k, v in pairs(t) do
-		func(v, k)
+		func(k, v)
 	end
 end
 
