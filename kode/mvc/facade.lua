@@ -4,12 +4,12 @@ kode.facade = kode.object:extend{
 }
 
 function kode.facade:new()
-	log4l.error("Singleton cannot be instantiated.")
+	error("Singleton cannot be instantiated.")
 end
 
 function kode.facade:registerObserver(notificationName, observer)
 	if not notificationName then
-		log4l.error("facade:registerObserver: notificationName is empty")
+		error("facade:registerObserver: notificationName is empty")
 		return 
 	end
 	if self.observerMap[notificationName] == nil then
@@ -36,7 +36,7 @@ function kode.facade:removeObserver(notificationName, notifyContext)
 	if observers == nil or type(observers) ~= "table" then return end
 	for i=1, #observers do
 		if observers[i] and observers[i]:compareNotifyContext(notifyContext) then
-			log4l.info("Removed Observer notification: %s", notificationName)
+			puts("Removed Observer notification: %s", notificationName)
 			table.remove(observers, i)
 			break
 		end
@@ -50,7 +50,7 @@ end
 function kode.facade:sendNotification(name, ...)
 	body = select(1, ...) or {}
 	kind = select(2, ...) or "nil"
-	-- log4l.info("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
+	-- puts("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
 	self:notifyObservers(kode.notification:extend{name=name, body=body, kind=kind})
 end
 
@@ -72,14 +72,12 @@ function kode.facade:registerController(controller)
 		}
 		for i=1, #interests do
 			if not interests[i] then
-				log4l.error("interests[%s] is empty in controller %s", i, controller.name)
+				error("interests[%s] is empty in controller %s", i, controller.name)
 			else
 				self:registerObserver(interests[i], observer)
 			end
 		end
 	end
-	-- local util = require "kodelua.util"
-	-- util.Dump(self.observerMap)
 	controller:onRegister()
 end
 
