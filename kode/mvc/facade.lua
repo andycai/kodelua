@@ -72,7 +72,7 @@ function kode.facade:registerController(controller)
 		}
 		for i=1, #interests do
 			if not interests[i] then
-				error("interests[%s] is empty in controller %s", i, controller.name)
+				error(string.format("interests[%s] is empty in controller %s", i, controller.name))
 			else
 				self:registerObserver(interests[i], observer)
 			end
