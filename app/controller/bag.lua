@@ -21,9 +21,9 @@ function meta:handleNotification(notification)
 		log4l.debug("Execute notice: %s", notification.name)
 		self:actionBagGet(notification.body)
 	elseif notification.name == Event.EVENT_START_APP then
-		local nums, data, labels = kode.csv.load("./kode/tests/player.csv")
+		local nums, data, labels = kode.loadcsv("./kode/tests/player.csv")
 		puts(kode.i18n("Testing %s", "bagController"))
-		kode.dump(data)
+		puts(data)
 	end
 end
 
