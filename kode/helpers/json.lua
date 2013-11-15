@@ -1,7 +1,7 @@
 local encode, decode
 local ok
 
-if __FRAMEWORK_ENVIRONMENT__ == "product" then
+if ENVIRONMENT__ == "product" then
 	ok = pcall(function()
 		local cjson = require "cjson"
 		encode = cjson.encode

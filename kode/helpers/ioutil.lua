@@ -1,6 +1,4 @@
-kode.ioutil = {}
-
-function kode.ioutil.scandir(directory)
+function kode.scandir(directory)
     local i, t, popen = 0, {}, io.popen
     -- for filename in popen('ls -a "'..directory..'"'):lines() do
     for filename in popen('dir "'..directory..'" /b /ad'):lines() do
@@ -10,7 +8,7 @@ function kode.ioutil.scandir(directory)
     return t
 end
 
-function kode.ioutil.read(path)
+function kode.fread(path)
 	local file = io.open(path, "r")
 	if file then
 		local content = file:read("*a")
@@ -20,7 +18,7 @@ function kode.ioutil.read(path)
 	return nil
 end
 
-function kode.ioutil.wirte(path, content)
+function kode.fwirte(path, content)
 	local file = io.open(path, "w+")
 	if file then
 		if file:write(content) == nil then return false end
@@ -31,7 +29,7 @@ function kode.ioutil.wirte(path, content)
 	end
 end
 
-function kode.ioutil.exists(path)
+function kode.fexists(path)
 	local file = io.open(path, "r")
 	if file then
 		io.close(file)
@@ -40,7 +38,7 @@ function kode.ioutil.exists(path)
 	return false
 end
 
-function kode.ioutil.filesize(path)
+function kode.filesize(path)
 	local size = false
 	local file = io.open(path, "r")
 	if file then
@@ -53,7 +51,7 @@ function kode.ioutil.filesize(path)
 end
 
 -- returns information [dirname, filename, basename, extname] about a file path
-function kode.ioutil.pathinfo(path)
+function kode.pathinfo(path)
 	local pos = string.len(path)
 	local extpos = pos + 1
 	while pos > 0 do
@@ -80,7 +78,7 @@ function kode.ioutil.pathinfo(path)
 end
 
 -- Helper function that loads a file into ram.
-function kode.ioutil.loadFile(fromDir, name)
+function kode.loadfile(fromDir, name)
 	local intmp = assert(io.open(from_dir .. name, 'r'))
 	local content = intmp.read("*a")
 	intmp:close()
@@ -90,7 +88,7 @@ end
 
 -- Loads a source file, but converts it with line numbering only
 -- showing from first line to last line
-function kode.ioutil.loadLines(source, first, last)
+function kode.loadlines(source, first, last)
 	local f = io.open(source)
 	local lines = {}
 	local i = 0

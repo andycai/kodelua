@@ -1,14 +1,11 @@
-require "kode.helpers.fmt"
 require "kode.helpers.csv"
-require "kode.helpers.log4l"
 require "kode.helpers.i18n"
 require "kode.helpers.json"
 require "kode.helpers.ioutil"
 require "kode.helpers.callback"
 require "kode.helpers.base64"
-require "kode.helpers.time"
-
--- Just a bunch of global helper functions
+require "kode.helpers.var"
+require "kode.helpers.benchmark"
 
 function kode.tostring(obj, ...)
 	if type(obj) == "table" then
@@ -24,25 +21,37 @@ function kode.tostring(obj, ...)
 	return obj
 end
 
-function puts(obj, ...)
- 	print(kode.tostring(obj, ...))
-end
-
-function istrue(value)
-	if value ~= false and value ~= nil then
-		return true
+function sputs(obj, ...)
+	if type(obj) == "table" then
+		obj = kode.tostring(obj)
+	else
+		if type(obj)=="string" and string.indexOf(obj, "%%s") ~= -1 then
+			if ... then
+				obj = obj:format(...)
+			end
+		else
+			obj = kode.tostring(obj)
+			if ... then
+				local len = select("#", ...)
+				for i=1,len do
+					obj = string.format("%s %s", obj, kode.tostring(select(i, ...)))
+				end
+			end
+		end
 	end
-	return false
+	return obj
 end
 
-function isempty(t, key)
-	return (not t[key])
+function puts(obj, ...)
+	print(sputs(obj, ...))
 end
 
-function checkvalue(value, msg)
-	if not msg then msg = "value is nil" end
-	if not value then
-		error(msg)
+function kode.appendPath(...)
+	local args = {...}
+	for i=1, #args do
+		local pkgPath = package.path  
+		package.path = string.format("%s;%s?.lua;%s?/init.lua",  
+			pkgPath, args[i], args[i]) 
 	end
 end
 
@@ -69,26 +78,22 @@ function kode.setglobal(f, v)
 	end
 end
 
-function kode.dump(obj, ...)
-	puts(obj, ...)
-end
-
 function kode.vardump(...)
 	local count = select("#", ...)
 	if count < 1 then return end
 
-	puts("vardump:")
+	print("vardump:")
 	for i = 1, count do
 		local v = select(i, ...)
 		local t = type(v)
 		if t == "string" then
-			puts("  %02d: [string] %s", i, v)
+			print(string.format("  %02d: [string] %s", i, v))
 		elseif t == "boolean" then
-			puts("  %02d: [boolean] %s", i, tostring(v))
+			print(string.format("  %02d: [boolean] %s", i, tostring(v)))
 		elseif t == "number" then
-			puts("  %02d: [number] %0.2f", i, v)
+			print(string.format("  %02d: [number] %0.2f", i, v))
 		else
-			puts("  %02d: [%s] %s", i, t, tostring(v))
+			print(string.format("  %02d: [%s] %s", i, t, tostring(v)))
 		end
 	end
 end
@@ -103,7 +108,7 @@ function kode.eval(input)
 		if err then
 			error("Syntax Error: " .. err)
 		else
-			puts(code())
+			print(code())
 		end
 	end)
 end

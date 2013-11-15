@@ -1,21 +1,3 @@
---[==[
-s = require "kode.i18n"
-
-s:setnamespace("en")
-
-s:set('money', 'I have %s dollars')
-s:set('wow', 'So much money!')
-
-print(s('money', 1000)) -- I have 1000 dollars
-
-s:setnamespace("fr") -- switch to french!
-s:set('wow', "Tant d'argent!")
-
-print(s('wow')) -- Tant d'argent!
-s:setnamespace("en")  -- switch back to english!
-print(s('wow')) -- So much money!
---]==]
-
 local registry = { }
 local current_namespace
 local fallback_namespace
@@ -70,3 +52,24 @@ s:setnamespace('zh')
 kode.i18n = setmetatable(s, __meta)
 
 return kode.i18n
+
+--[==[
+Usage:
+
+s = require "kode.i18n"
+
+s:setnamespace("en")
+
+s:set('money', 'I have %s dollars')
+s:set('wow', 'So much money!')
+
+print(s('money', 1000)) -- I have 1000 dollars
+
+s:setnamespace("fr") -- switch to french!
+s:set('wow', "Tant d'argent!")
+
+print(s('wow')) -- Tant d'argent!
+s:setnamespace("en")  -- switch back to english!
+print(s('wow')) -- So much money!
+
+--]==]

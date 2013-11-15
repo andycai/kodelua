@@ -1,5 +1,3 @@
-kode.csv = {}
-
 -- load data from a .csv file
 local function loadFile(path)
 	local nums = 0
@@ -30,7 +28,7 @@ local function makeLine(line_text)
 	return nums, values
 end
 
-function kode.csv.load(path)
+function kode.loadcsv(path)
 	if path == nil then return nil, nil, nil end
 
 	local data = {}
