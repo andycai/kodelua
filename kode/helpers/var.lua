@@ -1,6 +1,6 @@
 -- In other words, it will return true if the variable is an empty string, false, array(), NULL, "0", 0, and an unset variable
 function isempty(value)
-	return value == nil or value == false or value == "" or value == 0 or value == "0" or (type(value) == "table" and #value == 0)
+	return value == nil or value == false or value == "" or value == 0 or value == "0" or (type(value) == "table" and table.len(value) == 0)
 end
 
 function istable(value)
