@@ -2,6 +2,11 @@ local registry = { }
 local current_namespace
 local fallback_namespace
 
+local unpack = unpack
+if table.unpack then
+	unpack = table.unpack
+end
+
 local s = {
 	setnamespace = function(self, namespace)
 		current_namespace = namespace

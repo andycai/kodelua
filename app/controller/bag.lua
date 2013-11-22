@@ -18,7 +18,7 @@ end
 
 function meta:handleNotification(notification)
 	if notification.name == Event.EVENT_BAG_GET then
-		log4l.debug("Execute notice: %s", notification.name)
+		puts("Execute notice: %s", notification.name)
 		self:actionBagGet(notification.body)
 	elseif notification.name == Event.EVENT_START_APP then
 		local nums, data, labels = kode.loadcsv("./kode/tests/player.csv")
