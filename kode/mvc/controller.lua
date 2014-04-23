@@ -28,7 +28,7 @@ function kode.controller:handleNotification(notification)
 	if notification.name then
 		local action = "action_" .. notification.name
 		if self[action] and isfunction(self[action]) then
-			self:acton(notification)
+			self[action](self, notification)
 		end
 	end
 end
