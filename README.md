@@ -1,7 +1,7 @@
-Kodelua 是一个轻量级的 MVC 框架
+Kode 是一个轻量级的 MVC 框架
 ========
 
-Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。此框架已经应用在一款大型的横版格斗手游，所以稳定性可以保证，同时也会持续地维护和更新。
+Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。此框架已经应用在一款大型的横版格斗手游，所以稳定性可以保证，同时也会持续地维护和更新，已经更新到 kode v2 了，逻辑代码加载做了优化。
 
 什么是 MVCS？
 
@@ -10,7 +10,7 @@ Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一�
 - C 就是 Controller 层，处理游戏逻辑的地方，她需要与其他所有层打交道，她是总管。
 - S 就是 Service 层，负责与服务器端（如果用在客户端，完全可以用在服务器端）交互，只提供2中接口，请求和响应接口。
 
-推荐结合 [quick-cocos2d-x](https://github.com/dualface/quick-cocos2d-x) 框架一起使用，quick-cocos2d-x 针对 cocos2d-x 进行的大量的封装，并且能支持屏幕自适应，开发 Android 应用不在烦恼：）。
+推荐结合 [quick-cocos2d-x](https://github.com/chukong/quick-cocos2d-x) 框架一起使用，quick-cocos2d-x 针对 cocos2d-x 进行的大量的封装，并且能支持屏幕自适应，开发 Android 应用不在烦恼：）。
 
 运行测试，在终端下运行：./main.lua，运行前请确保你已经安装了 lua 环境
 
@@ -38,6 +38,3 @@ Kodelua 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一�
 	}
 
 windows 下运行 makeluamodule.exe 来创建新的模块，自动创建一个完整项目所有的代码和文件。
-
-## 阅读文档
-[开始阅读](doc/00.md)
