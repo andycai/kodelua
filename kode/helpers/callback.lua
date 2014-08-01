@@ -1,4 +1,5 @@
 -- Let's us cancel a callback
+kode = kode or {}
 
 kode.callback = function(callback)
 	local object = {callback = callback}

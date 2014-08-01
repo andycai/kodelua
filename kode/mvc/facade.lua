@@ -1,3 +1,7 @@
+kode = kode or {}
+
+local format = string.format
+
 kode.facade = kode.object:extend{
 	observerMap = {};
 	controllerMap = {}
@@ -49,14 +53,18 @@ end
 
 function kode.facade:sendNotification(name, ...)
 	body = select(1, ...) or {}
-	kind = select(2, ...) or "nil"
-	-- puts("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), kind)
-	self:notifyObservers(kode.notification:extend{name=name, body=body, kind=kind})
+	type_ = select(2, ...) or "nil"
+	-- puts("sendNotification: name=%s, body=%s, type=%s", name, kode.tostring(body), type_)
+	self:notifyObservers(kode.notification:extend{name=name, body=body, type=type_})
+end
+
+function kode.facade:send(name, ...)
+	self:sendNotification(name, ...)
 end
 
 function kode.facade:registerController(controller)
 	if controller.name == nil then 
-		error("controller need a Name")
+		error("controller need a name")
 		return
 	end
 	if self.controllerMap[controller.name] ~= nil then return end
@@ -100,4 +108,61 @@ function kode.facade:removeController(controllerName)
 		controller.onRemove()
 		self.controllerMap[controllerName] = nil
 	end
+end
+
+function kode.facade:getModulePath(module)
+	return format("%s.%s.%s", kode.appPath, kode.modulePath, module)
+end
+
+function kode.facade:loadController(module, controller)
+	local controller_ = controller or module
+	local pkg_ = format("%s.%s_c", self:getModulePath(module), controller_)
+	local obj_ = require(pkg_)
+
+	return obj_
+end
+
+function kode.facade:loadModel(module, model)
+	local model_ = model or module
+	local pkg_ = format("%s.%s_m", self:getModulePath(module), model_)
+	local obj_ = require(pkg_)
+
+	return obj_
+end
+
+function kode.facade:loadService(module, service)
+	local service_ = service or module
+	local pkg_ = format("%s.%s_s", self:getModulePath(module), service_)
+	local obj_ = require(pkg_)
+
+	return obj_
+end
+
+function kode.facade:loadView(module, view)
+	local view_ = view or module
+	local pkg_ = format("%s.view.%spane", self:getModulePath(module), view_)
+	local obj_ = require(pkg_)
+
+	return obj_
+end
+
+function kode.facade:loadvo(module, vo)
+	local vo_ = vo or module
+	local pkg_ = format("%s.%s_vo", self:getModulePath(module), vo_)
+	local obj_ = require(pkg_)
+
+	return obj_
+end
+
+function kode.facade:load(module)
+	local controller_ = self:loadController(module)
+	assert(controller_ ~= nil, module .. " controller must be not nil")
+
+	self:registerController(controller_:new(module))
+
+	--[[ model
+	kode.setglobal([module .. "Model"], self:loadModel(module))
+	-- serivce
+	kode.setglobal([module .. "Service"], self:loadService(module))
+	--]]
 end

@@ -223,6 +223,7 @@ end
 function table.checkCopy(key, source, target)
 	if not target or not source then return end
 	
+	local s_ = source[key]
 	local found = false
 	for k,v in pairs(source) do		-- need optimize
 		if k == key then

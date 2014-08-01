@@ -10,7 +10,6 @@ local function main()
 	require "kode.init"		-- framework
 	require "app.init"			-- app
 	require "app.appfacade"		-- application
-    require "app.register"      -- register controllers
 
 	appFacade:startup()		-- startup
 end

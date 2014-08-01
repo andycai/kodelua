@@ -1,3 +1,5 @@
+kode = kode or {}
+
 local encode, decode
 local ok
 

@@ -1,3 +1,5 @@
+kode = kode or {}
+
 local registry = { }
 local current_namespace
 local fallback_namespace
@@ -7,7 +9,7 @@ if table.unpack then
 	unpack = table.unpack
 end
 
-local s = {
+local text = {
 	setnamespace = function(self, namespace)
 		current_namespace = namespace
 		if not registry[current_namespace] then
@@ -51,30 +53,30 @@ local __meta = {
 	end
 }
 
-s:setfallback('zh')
-s:setnamespace('zh')
+text:setfallback('zh')
+text:setnamespace('zh')
 
-kode.i18n = setmetatable(s, __meta)
-
-return kode.i18n
+kode.__ = setmetatable(text, __meta)
+kode.text = kode.__
 
 --[==[
 Usage:
 
-s = require "kode.i18n"
+local text = kode.text
+-- local text = require "kode.text"
 
-s:setnamespace("en")
+text:setnamespace("en")
 
-s:set('money', 'I have %s dollars')
-s:set('wow', 'So much money!')
+text:set('money', 'I have %s dollars')
+text:set('wow', 'So much money!')
 
 print(s('money', 1000)) -- I have 1000 dollars
 
-s:setnamespace("fr") -- switch to french!
-s:set('wow', "Tant d'argent!")
+text:setnamespace("fr") -- switch to french!
+text:set('wow', "Tant d'argent!")
 
 print(s('wow')) -- Tant d'argent!
-s:setnamespace("en")  -- switch back to english!
+text:setnamespace("en")  -- switch back to english!
 print(s('wow')) -- So much money!
 
 --]==]

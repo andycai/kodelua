@@ -1,3 +1,5 @@
+kode = kode or {}
+
 function kode.scandir(directory)
     local i, t, popen = 0, {}, io.popen
     -- for filename in popen('ls -a "'..directory..'"'):lines() do

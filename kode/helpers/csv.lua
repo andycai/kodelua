@@ -1,4 +1,6 @@
 -- load data from a .csv file
+kode = kode or {}
+
 local function loadFile(path)
 	local nums = 0
 	local lines = {}

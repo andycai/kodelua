@@ -1,5 +1,3 @@
-local event = {}
+Event = Event or {}
 
-event.EVENT_CLICK = "Event.EVENT_CLICK"
-
-return event
+Event.EVENT_CLICK = "Event.EVENT_CLICK"

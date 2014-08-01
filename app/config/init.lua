@@ -1,1 +1,1 @@
-require "app.config.resource"
+require "app.config.events"

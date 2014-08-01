@@ -1,3 +1,5 @@
+kode = kode or {}
+
 local os = os
 local print = print
 

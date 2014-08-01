@@ -4,7 +4,7 @@
 
 --module("kode.base64", package.seeall)
 
-if kode == nil then return end
+kode = kode or {}
 
 kode.base64 = {}
 
@@ -66,5 +66,3 @@ function kode.base64.decode(data)
   end
   return result
 end
-
-return kode.base64

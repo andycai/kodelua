@@ -1,11 +1,13 @@
-require "kode.helpers.csv"
-require "kode.helpers.i18n"
-require "kode.helpers.json"
-require "kode.helpers.ioutil"
-require "kode.helpers.callback"
-require "kode.helpers.base64"
+kode = kode or {}
+
 require "kode.helpers.var"
-require "kode.helpers.benchmark"
+require "kode.helpers.i18n"
+require "kode.helpers.base64"
+-- require "kode.helpers.json"
+-- require "kode.helpers.ioutil"
+-- require "kode.helpers.csv"
+-- require "kode.helpers.callback"
+-- require "kode.helpers.benchmark"
 
 function kode.tostring(obj, ...)
 	if type(obj) == "table" then

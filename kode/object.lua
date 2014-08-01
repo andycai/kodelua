@@ -1,3 +1,5 @@
+kode = kode or {}
+
 local meta = {
 	name = "object"
 }

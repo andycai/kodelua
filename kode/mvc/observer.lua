@@ -1,3 +1,5 @@
+kode = kode or {}
+
 kode.observer = kode.object:extend{
 	notify = "";
 	context = {}

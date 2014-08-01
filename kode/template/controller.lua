@@ -1,7 +1,5 @@
 if kode == nil then return end
 
-local Event = require "app.config.events"
-
 local {{name}}Controller = BaseController:extend{
 	name = "{{name}}Controller{{time}}";
 }

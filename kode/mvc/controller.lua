@@ -1,17 +1,33 @@
+kode = kode or {}
+
 kode.controller = kode.notifier:extend{
-	controllerName = "BaseController";
-	viewComponent = {}
+	controllerName = "kode_controller",
+	moduleName = nil,
+	viewComponent_ = nil
 }
 
-function kode.controller:new(viewComponent)
-	assert(self.viewComponent ~= nil, "need a viewComponent")
-	self.viewComponent = viewComponent
+function kode.controller:loadView_()
+	-- return kode.facade:loadView(self.moduleName) -- for new framework(kode)
+	return require(string.format("app.view.%s.%spane", self.moduleName, self.moduleName)) -- deprecated
+end
 
-	o = {}
+function kode.controller:new(moduleName)
+	assert(moduleName ~= nil and moduleName ~= "", "module must be not empty")
+	self.moduleName = moduleName
+
+	local o = {}
 	setmetatable(o, self)
 	self.__index = self
 
 	return o
+end
+
+function kode.controller:getView()
+	if self.viewComponent_ == nil then
+		self.viewComponent_ = self:loadView_()
+		assert(self.viewComponent_ ~= nil, self.moduleName .. " view must be not nil")
+	end
+	return self.viewComponent_
 end
 
 function kode.controller:onRegister()
@@ -26,7 +42,7 @@ end
 
 function kode.controller:handleNotification(notification)
 	if notification.name then
-		local action = "action_" .. notification.name
+		local action = "action_" .. notification.name .. "_"
 		if self[action] and isfunction(self[action]) then
 			self[action](self, notification)
 		end
