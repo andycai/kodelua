@@ -1,4 +1,4 @@
-Kode 是一个轻量级的 MVC 框架
+Kode v3 是一个轻量级的 MVC 框架
 ========
 
 Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。此框架已经应用在一款大型的横版格斗手游，所以稳定性可以保证，同时也会持续地维护和更新，已经更新到 kode v3 了，v3 最大的改动是对逻辑代码做了按需加载（lazy loading）优化，对于比较大型的应用（游戏），初始化时性能会有很大的提高。
@@ -17,7 +17,8 @@ Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个�
 
 输出：
 
-	[Info] app start
+	[Info]
+	app start
 	Testing roleController
 	csv data: {
 	  1 = {
