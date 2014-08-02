@@ -1,12 +1,11 @@
 if kode == nil then return end
 
 local modules_init_ = {
-	"bag",
-	nil
+	"bag"
 }
 
 local modules_required_ = {
-	nil
+	nil,
 }
 
 local facade_ = kode.facade
