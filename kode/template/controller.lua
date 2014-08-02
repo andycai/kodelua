@@ -11,19 +11,13 @@ end
 
 function meta:listNotificationInterests()
 	return {
-		Event.EVENT_ACTION_NAME
+		Event.EVENT_MODULE_GET_SOMETHING
 	}
-end
-
-function meta:handleNotification(notification)
-	if notification.name == Event.EVENT_ACTION_NAME then
-		-- body
-	end
 end
 
 -- private action method
 
-function meta:actionFunction(param)
+function meta:action_module_get_something_(notification)
 	-- body
 end
 

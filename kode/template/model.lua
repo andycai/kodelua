@@ -6,7 +6,7 @@ local {{name}}Model = BaseModel:extend{
 local meta = {{name}}Model
 
 -- events
--- Event.EVENT_MODULE_ACTION_NAME = "EVENT_MODULE_ACTION_NAME";
+Event.EVENT_MODULE_GET_SOMETHING = "module_get_something";
 
 function meta:getData()
 	-- body
