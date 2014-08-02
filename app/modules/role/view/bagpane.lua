@@ -1,0 +1,3 @@
+local bagpane = {}
+
+return bagpane
