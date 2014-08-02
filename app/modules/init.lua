@@ -5,7 +5,6 @@ local modules_init_ = {
 }
 
 local modules_required_ = {
-	"hero",
 	nil,
 }
 
