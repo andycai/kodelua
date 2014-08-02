@@ -1,3 +1,1 @@
-Event = Event or {}
-
-Event.EVENT_CLICK = "Event.EVENT_CLICK"
+Event.EVENT_APP_START = "app_start"

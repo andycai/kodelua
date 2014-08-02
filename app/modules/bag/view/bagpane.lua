@@ -1,3 +1,0 @@
-local bagpane = {}
-
-return bagpane

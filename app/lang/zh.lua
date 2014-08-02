@@ -5,19 +5,6 @@ text:setnamespace("zh")
 text:set("output.pending", "开发中")
 text:set("output.failure", "失败")
 text:set("output.success", "成功")
-
-text:set("output.pending_plural", "开发中")
-text:set("output.failure_plural", "失败")
-text:set("output.success_plural", "成功")
-
-text:set("output.pending_zero", "开发中")
-text:set("output.failure_zero", "失败")
-text:set("output.success_zero", "成功")
-
-text:set("output.pending_single", "开发中")
-text:set("output.failure_single", "失败")
-text:set("output.success_single", "成功")
-
 text:set("output.seconds", "秒")
 
 failure_messages = {

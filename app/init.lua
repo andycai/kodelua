@@ -28,3 +28,5 @@ function route(response)
 		end
 	end, __G__TRACKBACK__)
 end
+
+kode.facade:send(Event.EVENT_APP_START, {action="startup"})

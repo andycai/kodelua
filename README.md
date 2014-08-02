@@ -1,7 +1,7 @@
 Kode 是一个轻量级的 MVC 框架
 ========
 
-Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。此框架已经应用在一款大型的横版格斗手游，所以稳定性可以保证，同时也会持续地维护和更新，已经更新到 kode v2 了，逻辑代码加载做了优化。
+Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个轻量级的框架。此框架已经应用在一款大型的横版格斗手游，所以稳定性可以保证，同时也会持续地维护和更新，已经更新到 kode v3 了，v3 最大的改动是对逻辑代码做了按需加载（lazy loading）优化，对于比较大型的应用（游戏），初始化时性能会有很大的提高。
 
 什么是 MVCS？
 
@@ -9,6 +9,7 @@ Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个�
 - V 就是 View 层，界面显示的地方，处理界面的显示并提供 update 接口（提供给 controller 调用）来更新界面。
 - C 就是 Controller 层，处理游戏逻辑的地方，她需要与其他所有层打交道，她是总管。
 - S 就是 Service 层，负责与服务器端（如果用在客户端，完全可以用在服务器端）交互，只提供2中接口，请求和响应接口。
+- E 就是 消息（事件）层，Controller 与 Controller 之间，Model 和 Service 与 Controller 的交互就是通过消息。
 
 推荐结合 [quick-cocos2d-x](https://github.com/chukong/quick-cocos2d-x) 框架一起使用，quick-cocos2d-x 针对 cocos2d-x 进行的大量的封装，并且能支持屏幕自适应，开发 Android 应用不在烦恼：）。
 
@@ -16,10 +17,9 @@ Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个�
 
 输出：
 
-	[Info] sendNotification: name=StartApp, body={
-	  notice = "startup",
-	}, type=nil
-	{
+	[Info] app start
+	Testing roleController
+	csv data: {
 	  1 = {
 	    1 = "Andy",
 	    2 = "male",
@@ -36,5 +36,15 @@ Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个�
 	    3 = "20",
 	  },
 	}
+	role service: request getting bag size
+	role service: onBagGetSize
+	role bag info: {
+		type = "role_bag",
+		name = "bag_get_size",
+		body = {
+			size = 32,
+		}
+	}
+	role model: get bag size: 32
 
 windows 下运行 makeluamodule.exe 来创建新的模块，自动创建一个完整项目所有的代码和文件。

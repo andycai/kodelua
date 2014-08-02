@@ -9,12 +9,6 @@ function meta:onRegister()
 	-- body
 end
 
-function meta:listNotificationInterests()
-	return {
-		Event.EVENT_MODULE_GET_SOMETHING
-	}
-end
-
 -- private action method
 
 function meta:action_module_get_something_(notification)
