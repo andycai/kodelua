@@ -6,11 +6,6 @@ kode.controller = kode.notifier:extend{
 	viewComponent_ = nil
 }
 
-function kode.controller:loadView_()
-	-- return kode.facade:loadView(self.moduleName) -- for new framework(kode)
-	return require(string.format("app.view.%s.%spane", self.moduleName, self.moduleName)) -- deprecated
-end
-
 function kode.controller:new(moduleName)
 	assert(moduleName ~= nil and moduleName ~= "", "module must be not empty")
 	self.moduleName = moduleName
@@ -24,7 +19,7 @@ end
 
 function kode.controller:getView()
 	if self.viewComponent_ == nil then
-		self.viewComponent_ = self:loadView_()
+		self.viewComponent_ = kode.facade:loadView(self.moduleName)
 		assert(self.viewComponent_ ~= nil, self.moduleName .. " view must be not nil")
 	end
 	return self.viewComponent_
