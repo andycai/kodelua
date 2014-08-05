@@ -48,4 +48,4 @@ Kode 是为了开发移动游戏，结合使用 cocos2d-x 框架而开发一个�
 	}
 	role model: get bag size: 32
 
-windows 下运行 makeluamodule.exe 来创建新的模块，自动创建一个完整项目所有的代码和文件。
+*inx 下运行 makeluamodule 来创建新的模块，windows 下运行 makeluamodule.exe 来创建新的模块，自动创建一个完整项目所有的代码和文件。
