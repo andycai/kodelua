@@ -1,0 +1,1 @@
+Event.EVENT_APP_START = "app_start"
