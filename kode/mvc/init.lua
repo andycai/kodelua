@@ -9,24 +9,41 @@ kode.modulePath = "modules"
 class Event
 --]]
 Event = Event or {}
-
--- Lazy loading
 local eventListeners_ = {}
 
 function Event.getListeners(module)
-	return eventListeners_[module]
+	local listenerFunc_ = eventListeners_[module]
+	if listenerFunc_ then
+		return listenerFunc_()
+	else
+		lualog("module [%s] has no controller", module)
+		return nil
+	end
 end
 
+-- Lazy loading
 function Event.register(module, events)
-	if events and type(events) == "table" and #events > 0 then
-		for i, eventName in ipairs(events) do
-			if type(eventName) ~= "string" or eventName == "" then
-				error(sputs("event name must be a string and is not empty [index:%s]", i))
-			else
-				if eventListeners_[module] == nil then
-					eventListeners_[module] = {}
+	if module and events then
+		eventListeners_[module] = events
+	else
+		error("Event.register failed, module or events is nil")
+	end
+end
+
+function Event.checkEvents()
+	local events
+	for module, eventFunc in pairs(eventListeners_) do
+		events = eventFunc()
+		if events and type(events) == "table" and #events > 0 then
+			local eventName, prev
+			for i = 1, #events do
+				eventName = events[i]
+				if not ((type(eventName) == "string" and eventName ~= "") or type(eventName) == "number") then
+					prev = i - 1
+					if prev < 1 then prev = 1 end
+					puts("[%s_e.lua id:%s] event name is empty (prev %s)]", module, i, events[prev])
+					-- error(sputs("[%s_e.lua id:%s] event name is empty (prev %s)]", module, i, events[prev]))
 				end
-				table.insert(eventListeners_[module], eventName)
 			end
 		end
 	end
@@ -37,7 +54,8 @@ class facade
 --]]
 kode.facade = kode.object:extend{
 	observerMap_ = {},
-	loadedModules_ = {}
+	loadedModules_ = {},
+	skippedModules_ = {}
 }
 
 function kode.facade:new()
@@ -79,18 +97,24 @@ function kode.facade:send(eventName, ...)
 end
 
 function kode.facade:registerModule(module)
-	self:loadEvent(module)
+	-- self:loadEvent(module)
 
 	local listeners_ = Event.getListeners(module)
 	local observer_
 	if listeners_ and #listeners_ > 0 then
+		observer_ = kode.observer:extend{
+			name = module,
+			notify = "handleNotification"
+		}
 		for _, eventName in ipairs(listeners_) do
-			observer_ = kode.observer:extend{
-				name = module,
-				notify = "handleNotification"
-			}
 			self:registerObserver(eventName, observer_)
 		end
+	end
+end
+
+function kode.facade:skip(module, value)
+	if value then
+		self.skippedModules_[module] = {m = value[1], s = value[2]}
 	end
 end
 
@@ -104,18 +128,6 @@ function kode.facade:loadController(module, controller)
 	local obj_ = require(pkg_)
 
 	return obj_
-end
-
-function kode.facade:loadModule(module)
-	local controller_ = self:loadController(module)
-	assert(controller_ ~= nil, module .. " controller must be not nil")
-	self.loadedModules_[module] = controller_
-
-	local model_ = self:loadModel(module)
-	if model_ then kode.setglobal(module .. "Model", self:loadModel(module)) end
-
-	local service_ = self:loadService(module)
-	if service_ then kode.setglobal(module .. "Service", self:loadService(module)) end
 end
 
 function kode.facade:loadModel(module, model)
@@ -136,7 +148,9 @@ end
 
 function kode.facade:loadView(module, view)
 	local view_ = view or module
-	local pkg_ = format("%s.view.%spane", self:getModulePath(module), view_)
+	local f_ = "%s.view.%spane"
+	if view then f_ = "%s.view.%s" end
+	local pkg_ = format(f_, self:getModulePath(module), view_)
 	local obj_ = require(pkg_)
 
 	return obj_
@@ -155,6 +169,22 @@ function kode.facade:loadEvent(module, event)
 	local pkg_ = format("%s.%s_e", self:getModulePath(module), event_)
 	
 	require(pkg_)
+end
+
+function kode.facade:loadModule(module)
+	local controller_ = self:loadController(module)
+	assert(controller_ ~= nil, module .. " controller must be not nil")
+	self.loadedModules_[module] = controller_:new(module)
+
+	if not self.skippedModules_[module] or not self.skippedModules_[module]["m"] then
+		local model_ = self:loadModel(module)
+		if model_ then kode.setglobal(module .. "Model", self:loadModel(module)) end
+	end
+
+	if not self.skippedModules_[module] or not self.skippedModules_[module]["s"] then
+		local service_ = self:loadService(module)
+		if service_ then kode.setglobal(module .. "Service", self:loadService(module)) end
+	end
 end
 
 --[[
@@ -219,7 +249,6 @@ end
 
 function kode.controller:getView()
 	if self.viewComponent_ == nil then
-		-- self.viewComponent_ = require(string.format("app.view.%s.%spane", self.moduleName, self.moduleName)) -- deprecated
 		self.viewComponent_ = kode.facade:loadView(self.moduleName)
 		assert(self.viewComponent_ ~= nil, self.moduleName .. " view must be not nil")
 	end
