@@ -11,66 +11,46 @@ local skip_ = {
 }
 
 local facade_ = kode.facade
-
-for skip_key, skip_value in pairs(skip_) do
-	if skip_value and type(skip_value) == "table" then
-		facade_:skip(skip_key, skip_value)
-	end
-end
-
-for _, v in ipairs(modules_init_) do
-	if v then
-		facade_:loadEvent(v)
-	end
-end
-
-for _, v in ipairs(modules_init_) do
-	if v then
-		facade_:registerModule(v)
-	end
-end
+facade_:skip(skip_)
+facade_:registerModules(modules_init_)
 
 -- Event.checkEvents()
 
 --[[
 Usage:
-local roleModel = r_m("role") 					-- "app.modules.role.role_m"
-local talentModel = r_m("role", "talent") 		-- "app.modules.role.talent_m"
+local roleModel = app.m("role") 					-- "app.modules.role.role_m"
+local talentModel = app.m("role", "talent") 		-- "app.modules.role.talent_m"
 --]]
-function loadModel(module, model)
+function app.m(module, model)
 	return facade_:loadModel(module, model)
 end
-r_m = loadModel
 
 --[[
 Usage:
-local roleService = r_s("role") 					-- "app.modules.role.role_s"
-local talentService = r_s("role", "talent") 		-- "app.modules.role.talent_s"
+local roleService = app.s("role") 					-- "app.modules.role.role_s"
+local talentService = app.s("role", "talent") 		-- "app.modules.role.talent_s"
 --]]
-function loadService(module, service)
+function app.s(module, service)
 	return facade_:loadService(module, service)
 end
-r_s = loadService
 
 --[[
 Usage:
-local rolePane = r_v("role") 				-- "app.modules.role.view.rolepane"
-local talentPane = r_v("role", "talent") 	-- "app.modules.role.view.talentpane"
+local rolePane = app.v("role") 				-- "app.modules.role.view.rolepane"
+local talentPane = app.v("role", "talent") 	-- "app.modules.role.view.talentpane"
 --]]
-function loadView(module, view)
+function app.v(module, view)
 	return facade_:loadView(module,view)
 end
-r_v = loadView
 
 --[[
 Usage:
-local roleVo = r_vo("role") 						-- "app.modules.role.role_vo"
-local talentVo = r_vo("role", "talent") 			-- "app.modules.role.talent_vo"
+local roleVo = app.vo("role") 						-- "app.modules.role.role_vo"
+local talentVo = app.vo("role", "talent") 			-- "app.modules.role.talent_vo"
 --]]
-function loadvo(module, vo)
+function app.vo(module, vo)
 	return facade_:loadvo(module, vo)
 end
-r_vo = loadvo
 
 _G.BaseController = facade_:loadController("base")
 _G.BaseModel = facade_:loadModel("base")

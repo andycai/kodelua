@@ -34,11 +34,11 @@ function Event.checkEvents()
 	local events
 	for module, eventFunc in pairs(eventListeners_) do
 		events = eventFunc()
-		if events and type(events) == "table" and #events > 0 then
+		if istable(events) and #events > 0 then
 			local eventName, prev
 			for i = 1, #events do
 				eventName = events[i]
-				if not ((type(eventName) == "string" and eventName ~= "") or type(eventName) == "number") then
+				if not ((isstring(eventName) and eventName ~= "") or isnumber(eventName)) then
 					prev = i - 1
 					if prev < 1 then prev = 1 end
 					puts("[%s_e.lua id:%s] event name is empty (prev %s)]", module, i, events[prev])
@@ -96,9 +96,21 @@ function kode.facade:send(eventName, ...)
 	self:notifyObservers({name=eventName, body=body, type=type_})
 end
 
-function kode.facade:registerModule(module)
-	-- self:loadEvent(module)
+function kode.facade:registerModules(modules)
+	for _, v in ipairs(modules) do
+		if v then
+			self:loadEvent(v)
+		end
+	end
 
+	for _, v in ipairs(modules) do
+		if v then
+			self:registerModule(v)
+		end
+	end
+end
+
+function kode.facade:registerModule(module)
 	local listeners_ = Event.getListeners(module)
 	local observer_
 	if listeners_ and #listeners_ > 0 then
@@ -112,9 +124,11 @@ function kode.facade:registerModule(module)
 	end
 end
 
-function kode.facade:skip(module, value)
-	if value then
-		self.skippedModules_[module] = {m = value[1], s = value[2]}
+function kode.facade:skip(modules)
+	if istable(modules) then
+		for module, value in pairs(modules) do
+			self.skippedModules_[module] = {m = value[1], s = value[2]}
+		end
 	end
 end
 
