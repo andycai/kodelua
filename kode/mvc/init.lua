@@ -186,9 +186,11 @@ function kode.facade:loadEvent(module, event)
 end
 
 function kode.facade:loadModule(module)
-	local controller_ = self:loadController(module)
-	assert(controller_ ~= nil, module .. " controller must be not nil")
-	self.loadedModules_[module] = controller_:new(module)
+	local CController_ = self:loadController(module)
+	assert(CController_ ~= nil, module .. " controller must be not nil")
+	local c_ = CController_:new(module)
+	self.loadedModules_[module] = c_
+	c_:onRegister()
 
 	if not self.skippedModules_[module] or not self.skippedModules_[module]["m"] then
 		local model_ = self:loadModel(module)
