@@ -16,7 +16,7 @@ function route(response)
 		if response then
 			local resp = kode.json.decode(response)
 			local act = string.explode(resp.act, ".")
-			local service = app.s(act[1])
+			local service = app.service(act[1])
 			local action = act[2]
 			if service ~= nil then
 				if service[action] then

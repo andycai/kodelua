@@ -18,43 +18,39 @@ facade_:registerModules(modules_init_)
 
 --[[
 Usage:
-local roleModel = app.m("role") 					-- "app.modules.role.role_m"
-local talentModel = app.m("role", "talent") 		-- "app.modules.role.talent_m"
+local roleModel = app.model("role") 					-- "app.modules.role.role_m"
+local talentModel = app.model("role", "talent") 		-- "app.modules.role.talent_m"
 --]]
-function loadModel(module, model)
+function app.model(module, model)
 	return facade_:loadModel(module, model)
 end
-r_m = loadModel
 
 --[[
 Usage:
-local roleService = app.s("role") 					-- "app.modules.role.role_s"
-local talentService = app.s("role", "talent") 		-- "app.modules.role.talent_s"
+local roleService = app.service("role") 					-- "app.modules.role.role_s"
+local talentService = app.service("role", "talent") 		-- "app.modules.role.talent_s"
 --]]
-function loadService(module, service)
+function app.service(module, service)
 	return facade_:loadService(module, service)
 end
-r_s = loadService
 
 --[[
 Usage:
-local rolePane = app.v("role") 				-- "app.modules.role.view.rolepane"
-local talentPane = app.v("role", "talent") 	-- "app.modules.role.view.talentpane"
+local rolePane = app.view("role") 				-- "app.modules.role.view.rolepane"
+local talentPane = app.view("role", "talent") 	-- "app.modules.role.view.talentpane"
 --]]
-function loadView(module, view)
+function app.view(module, view)
 	return facade_:loadView(module,view)
 end
-r_v = loadView
 
 --[[
 Usage:
 local roleVo = app.vo("role") 						-- "app.modules.role.role_vo"
 local talentVo = app.vo("role", "talent") 			-- "app.modules.role.talent_vo"
 --]]
-function loadvo(module, vo)
+function app.vo(module, vo)
 	return facade_:loadvo(module, vo)
 end
-r_vo = loadvo
 
 _G.BaseController = facade_:loadController("base")
 _G.BaseModel = facade_:loadModel("base")

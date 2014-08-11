@@ -61,7 +61,7 @@ function meta:action_app_start_(notification)
 	FarmView:init()
 
 	local farmPane = FarmView:getPane()
-	local Class_FrameMenu = app.v("farm", "menu")
+	local Class_FrameMenu = app.view("farm", "menu")
 
 	sceneGame:addChild(farmPane)
 	sceneGame:addChild(Class_FrameMenu:new())
