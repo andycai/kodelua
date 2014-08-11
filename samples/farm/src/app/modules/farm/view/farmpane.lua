@@ -35,7 +35,7 @@ function farmPane:init()
 	end
 
 	-- add moving dog
-	local Class_Dog = app.v("farm", "dog")
+	local Class_Dog = app.view("farm", "dog")
 	spriteDog = Class_Dog:new()
 	layerFarm:addChild(spriteDog)
 
