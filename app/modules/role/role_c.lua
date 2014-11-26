@@ -21,10 +21,10 @@ function meta:action_app_start_()
 	puts(kode.__("Testing %s", "roleController"))
 	puts("csv data:", data)
 
-	-- roleService is auto global variable after loadModule()
+	local roleService = app.service("role")
 	roleService:reqBagGetSize()
 
-	-- roleModel is auto global variable after loadModule()
+	local roleModle = app.model("role")
 	local size_ = roleModel:getBagSize()
 	puts("role model: get bag size: %s", size_)
 end
