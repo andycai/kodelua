@@ -34,7 +34,10 @@ function kode.loadcsv(path)
 	if path == nil then return nil, nil, nil end
 
 	local data = {}
+	local nums, line
 	nums, lines = loadFile(path)
+
+	local labelNum, labels, tmpNum
 
 	labelNum, labels = makeLine(lines[1])
 	for i=2, nums do
@@ -42,4 +45,18 @@ function kode.loadcsv(path)
 	end
 
 	return nums-1, data, labels
+end
+
+function kode.loadcsvdata(path)
+	if path == nil then return nil, nil, nil end
+
+	local data = {}
+	local nums, line, tmpNum
+	nums, lines = loadFile(path)
+
+	for i=1, nums do
+		tmpNum, data[i-1] = makeLine(lines[i])
+	end
+
+	return nums, data
 end
