@@ -167,7 +167,7 @@ function kode.facade:loadView(module, view)
 	local pkg_ = format(f_, self:getModulePath(module), view_)
 	local obj_ = require(pkg_)
 
-	return obj_
+	return obj_,pkg_
 end
 
 function kode.facade:loadvo(module, vo)
@@ -283,5 +283,12 @@ function kode.controller:handleNotification(notification)
 		if self[action] and isfunction(self[action]) then
 			self[action](self, notification)
 		end
+		
+		if self.message then
+			local name = notification.name
+			if self.message[name] and isfunction(self.message[name]) then
+				self.message[name](self,notification)
+			end
+		end 
 	end
 end

@@ -1,3 +1,8 @@
-local bagpane = {}
+local rolepane = {}
+local meta = rolepane
 
-return bagpane
+function meta:hello()
+	print("role pane say hello")
+end
+
+return meta

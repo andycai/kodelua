@@ -1,4 +1,4 @@
-kode = kode or {}
+if kode == nil then return end
 
 local meta = {
 	name = "object"

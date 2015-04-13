@@ -240,3 +240,55 @@ function table.checkCopy(key, source, target)
 		end
 	end
 end
+
+function table.shuffle(tbl)
+	for i = #tbl,1,-1 do
+		local j = math.random(1, i)
+		local tmp = tbl[i]
+		tbl[i] = tbl[j]
+		tbl[j] = tmp
+	end
+end
+
+function table.cover(tbl, tbl2)
+	local tbl_ = {}
+	if type(tbl) == "table" then
+		for k, v in pairs(tbl) do
+			local have = false
+			if type(tbl2) == "table" and tbl2[k] ~= nil then
+				have = true
+				tbl_[k] = tbl2[k]
+			end
+			if have == false then
+				tbl_[k] = v
+			end
+		end
+	end
+	return tbl_
+end
+
+function table.extend(tbl, tbl2)
+	local tbl_ = {}
+
+	if type(tbl) == "table" then
+		for k, v in pairs(tbl) do
+			tbl_[k] = v
+		end
+	end
+
+	if type(tbl2) == "table" then
+		for k,v in pairs(tbl2) do
+			tbl_[k] = v
+		end
+	end
+
+	return tbl_
+end
+
+function table.modify(tbl, tbl2)
+	if type(tbl) == "table" and type(tbl2) == "table" then
+		for k, v in pairs(tbl2) do
+			tbl[k] = tbl2[k]
+		end
+	end
+end

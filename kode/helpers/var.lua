@@ -29,6 +29,10 @@ function isbool(value)
 	return type(value) == "boolean"
 end
 
+function isuserdata(value)
+	return type(value) == "userdata"
+end
+
 function isset(value)
 	return type(value) ~= nil
 end

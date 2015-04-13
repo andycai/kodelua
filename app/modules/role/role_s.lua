@@ -18,7 +18,7 @@ function meta:onBagGetSize(param)
 	-- save to model
 	-- send notice
 	puts("role service: onBagGetSize")
-	local roleModel = app.model("role")
+	local roleModel = ns.model.role
 	roleModel:setBagSize(32)
 	self:send(Event.EVENT_BAG_GET_SIZE, {size=32}, "role_bag")
 end

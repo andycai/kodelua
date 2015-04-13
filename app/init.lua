@@ -4,8 +4,9 @@ app = app or {}
 
 require "app.lang.zh"
 require "app.config.init"
-require "app.helper.init"
 require "app.modules.init"
+
+ns = kode.namespace.app
 
 function requestServer( ... )
 	-- request to server
